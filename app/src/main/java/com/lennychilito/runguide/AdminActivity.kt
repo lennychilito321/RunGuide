@@ -1,8 +1,10 @@
 package com.lennychilito.runguide
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.lennychilito.runguide.databinding.ActivityAdminBinding
@@ -20,8 +22,15 @@ class AdminActivity : AppCompatActivity() {
 
         db = FirebaseDatabase.getInstance().getReference("senderos")
 
-        binding.btnCrear.setOnClickListener {
 
+        binding.btnLogout.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(this, MainActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+        }
+
+        binding.btnCrear.setOnClickListener {
             val nombre = binding.etNombre.text.toString()
             val ubicacion = binding.etUbicacion.text.toString()
             val distancia = binding.etDistancia.text.toString()
@@ -40,7 +49,6 @@ class AdminActivity : AppCompatActivity() {
             )
 
             db.push().setValue(sendero)
-
             Toast.makeText(this, "Sendero creado", Toast.LENGTH_SHORT).show()
 
             binding.etNombre.text.clear()
@@ -50,14 +58,11 @@ class AdminActivity : AppCompatActivity() {
         }
 
         binding.btnEliminar.setOnClickListener {
-
             db.removeValue()
-
             Toast.makeText(this, "Todos los senderos eliminados", Toast.LENGTH_SHORT).show()
         }
 
         binding.btnCargarDatos.setOnClickListener {
-
             val test = mapOf(
                 "nombre" to "PRUEBA",
                 "ubicacion" to "Popayán",
@@ -73,4 +78,5 @@ class AdminActivity : AppCompatActivity() {
                     Toast.makeText(this, "ERROR ❌ ${it.message}", Toast.LENGTH_LONG).show()
                 }
         }
-}}
+    }
+}

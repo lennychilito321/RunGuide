@@ -2,64 +2,61 @@ package com.lennychilito.runguide
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Patterns
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
-import com.lennychilito.runguide.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityRegisterBinding
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_register)
 
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        auth = FirebaseAuth.getInstance()
 
-        binding.btnRegister.setOnClickListener {
+        val etEmail = findViewById<EditText>(R.id.etRegisterEmail)
+        val etPassword = findViewById<EditText>(R.id.etRegisterPassword)
+        val etConfirm = findViewById<EditText>(R.id.etRegisterConfirm)
+        val btnRegister = findViewById<Button>(R.id.btnRegister)
+        val btnBackToLogin = findViewById<Button>(R.id.btnBackToLogin)
 
-            val nombre = binding.etNombre.text.toString()
-            val email = binding.etEmail.text.toString()
-            val password = binding.etPassword.text.toString()
+        btnBackToLogin.setOnClickListener { finish() }
 
-            if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                Toast.makeText(this, "Correo inválido", Toast.LENGTH_SHORT).show()
+        btnRegister.setOnClickListener {
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString()
+            val confirm = etConfirm.text.toString()
+
+            if (email.isEmpty() || password.isEmpty() || confirm.isEmpty()) {
+                Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            if (password != confirm) {
+                Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (password.length < 6) {
-                Toast.makeText(this, "Mínimo 6 caracteres", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            FirebaseAuth.getInstance()
-                .createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener { task ->
-
-                    if (task.isSuccessful) {
-
-                        val uid = FirebaseAuth.getInstance().currentUser?.uid ?: ""
-
-                        val user = mapOf(
-                            "uid" to uid,
-                            "nombre" to nombre,
-                            "email" to email,
-                            "rol" to "usuario"
-                        )
-
-                        FirebaseFirestore.getInstance()
-                            .collection("usuarios")
-                            .document(uid)
-                            .set(user)
-
-                        startActivity(Intent(this, MainActivity::class.java))
-
-                    } else {
-                        Toast.makeText(this, "Error al registrar", Toast.LENGTH_SHORT).show()
-                    }
+            auth.createUserWithEmailAndPassword(email, password)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "¡Cuenta creada exitosamente!", Toast.LENGTH_SHORT).show()
+                    // Ir directo a Senderos como usuario normal
+                    val intent = Intent(this, SenderosActivity::class.java)
+                    intent.putExtra("ROL", "usuario")
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                }
+                .addOnFailureListener { e ->
+                    Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
                 }
         }
     }

@@ -30,7 +30,7 @@ class SenderosActivity : AppCompatActivity() {
         }
         val rol = intent.getStringExtra("ROL") ?: "invitado"
 
-        // 🔹 RecyclerView
+
         binding.recyclerSenderos.layoutManager = LinearLayoutManager(this)
         adapter = SenderoAdapter(listaSenderos, rol)
         binding.recyclerSenderos.adapter = adapter

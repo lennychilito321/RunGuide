@@ -20,7 +20,8 @@ class AdminActivity : AppCompatActivity() {
         binding = ActivityAdminBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        db = FirebaseDatabase.getInstance().getReference("senderos")
+        db = FirebaseDatabase.getInstance("https://runner-app-f6214-default-rtdb.firebaseio.com/")
+            .getReference("senderos")
 
 
         binding.btnLogout.setOnClickListener {
@@ -70,12 +71,15 @@ class AdminActivity : AppCompatActivity() {
                 "dificultad" to "Fácil"
             )
 
+            Toast.makeText(this, "Intentando guardar...", Toast.LENGTH_SHORT).show()
+
             db.push().setValue(test)
                 .addOnSuccessListener {
-                    Toast.makeText(this, "SE GUARDÓ 🔥", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "SE GUARDÓ ✅", Toast.LENGTH_LONG).show()
                 }
-                .addOnFailureListener {
-                    Toast.makeText(this, "ERROR ❌ ${it.message}", Toast.LENGTH_LONG).show()
+                .addOnFailureListener { e ->
+                    // Muestra el error exacto en pantalla
+                    Toast.makeText(this, "ERROR: ${e.message}", Toast.LENGTH_LONG).show()
                 }
         }
     }

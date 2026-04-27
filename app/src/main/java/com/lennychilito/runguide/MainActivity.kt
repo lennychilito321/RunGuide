@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
 
     // UID del admin — cópialo desde Firebase Console > Authentication
-    private val ADMIN_UID = "Lennychilito321@gmail.com"
+    private val ADMIN_UID = "dikzbNLdGGNXx8H6Rt6Ri7clfrd2"
     private val ADMIN_EMAIL = "Lennychilito321@gmail.com"
 
     override fun onCreate(savedInstanceState: Bundle?) {

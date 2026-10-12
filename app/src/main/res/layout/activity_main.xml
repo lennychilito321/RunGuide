@@ -16,7 +16,8 @@
         android:layout_height="120dp"
         android:layout_gravity="center"
 
-        android:src="@drawable/logorun" />
+        android:src="@drawable/logorun"
+        android:layout_marginTop="50dp"/>
 
     <!-- TITULO -->
 

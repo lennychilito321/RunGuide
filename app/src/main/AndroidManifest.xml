@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- INTERNET para Firebase -->
     <uses-permission android:name="android.permission.INTERNET" />
+
+    <!-- GPS: ubicación precisa mientras la app está en primer plano -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:icon="@drawable/logo"
@@ -18,6 +23,21 @@
 
         <activity
             android:name=".SenderosActivity"
+            android:exported="false" />
+
+        <!-- NUEVA: detalle de cada sendero -->
+        <activity
+            android:name=".DetalleSenderoActivity"
+            android:exported="false" />
+
+        <!-- NUEVA: cronómetro GPS mientras se corre -->
+        <activity
+            android:name=".CronometroActivity"
+            android:exported="false" />
+
+        <!-- NUEVA: dashboard del usuario -->
+        <activity
+            android:name=".DashboardActivity"
             android:exported="false" />
 
         <activity

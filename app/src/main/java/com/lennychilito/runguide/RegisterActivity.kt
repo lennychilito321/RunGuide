@@ -2,29 +2,34 @@ package com.lennychilito.runguide
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
-import com.lennychilito.runguide.databinding.ActivityRegisterBinding
 
 class RegisterActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var binding: ActivityRegisterBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityRegisterBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_register)
 
         auth = FirebaseAuth.getInstance()
 
-        binding.btnBackToLogin.setOnClickListener { finish() }
+        val etEmail = findViewById<EditText>(R.id.etRegisterEmail)
+        val etPassword = findViewById<EditText>(R.id.etRegisterPassword)
+        val etConfirm = findViewById<EditText>(R.id.etRegisterConfirm)
+        val btnRegister = findViewById<Button>(R.id.btnRegister)
+        val btnBackToLogin = findViewById<Button>(R.id.btnBackToLogin)
 
-        binding.btnRegister.setOnClickListener {
-            val email = binding.etRegisterEmail.text.toString().trim()
-            val password = binding.etRegisterPassword.text.toString()
-            val confirm = binding.etRegisterConfirm.text.toString()
+        btnBackToLogin.setOnClickListener { finish() }
+
+        btnRegister.setOnClickListener {
+            val email = etEmail.text.toString().trim()
+            val password = etPassword.text.toString()
+            val confirm = etConfirm.text.toString()
 
             if (email.isEmpty() || password.isEmpty() || confirm.isEmpty()) {
                 Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
@@ -44,6 +49,7 @@ class RegisterActivity : AppCompatActivity() {
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener {
                     Toast.makeText(this, "¡Cuenta creada exitosamente!", Toast.LENGTH_SHORT).show()
+                    // Ir directo a Senderos como usuario normal
                     val intent = Intent(this, SenderosActivity::class.java)
                     intent.putExtra("ROL", "usuario")
                     intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK

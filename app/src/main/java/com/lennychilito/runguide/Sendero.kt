@@ -6,6 +6,11 @@ data class Sendero(
     val ubicacion: String = "",
     val distancia: String = "",
     val dificultad: String = "",
-    val rating: String = "",
-    val imagenUrl: String = ""
+    val rating: String = "0.0",
+    val imagenUrl: String = "",
+    val imagenBase64: String = "",
+    val descripcion: String = "",
+    val elevacion: String = "0m",
+    val tipoTerreno: String = "",
+    val tiempoEstimado: String = "0"   // en minutos
 )

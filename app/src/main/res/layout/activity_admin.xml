@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -18,51 +17,132 @@
             android:textStyle="bold"
             android:layout_marginBottom="20dp"/>
 
+        <!-- Campos obligatorios -->
         <EditText
             android:id="@+id/etNombre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nombre del sendero"/>
+            android:hint="* Nombre del sendero"
+            android:layout_marginBottom="8dp"/>
 
         <EditText
             android:id="@+id/etUbicacion"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ubicación"/>
-
-        <EditText
-            android:id="@+id/etDistancia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Distancia (ej: 5 km)"/>
+            android:hint="* Ubicación (ej: Popayán)"
+            android:layout_marginBottom="8dp"/>
 
         <EditText
             android:id="@+id/etDificultad"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Dificultad (Fácil, Moderada, Difícil)"/>
+            android:hint="* Dificultad: Fácil / Moderada / Difícil"
+            android:layout_marginBottom="8dp"/>
 
+        <!-- Campos opcionales -->
+        <EditText
+            android:id="@+id/etDistancia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Distancia en km (ej: 1.4)"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/etElevacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Elevación (ej: 80m)"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/etTipoTerreno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tipo de terreno: Tierra / Asfalto / Montaña / Mixto"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/etTiempoEstimado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tiempo estimado en minutos (ej: 25)"
+            android:inputType="number"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/etDescripcion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Descripción del sendero"
+            android:minLines="3"
+            android:inputType="textMultiLine"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- SECCIÓN FOTO -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Foto del sendero"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#1C1C1C"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Preview de la foto elegida -->
+        <ImageView
+            android:id="@+id/imgPreview"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            android:background="#E0E0E0"
+            android:visibility="gone"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvFotoEstado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sin foto seleccionada"
+            android:textSize="13sp"
+            android:textColor="#777777"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnElegirFoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="📷 Elegir foto de la galería"
+            android:backgroundTint="#1565C0"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Botones principales -->
         <Button
             android:id="@+id/btnCrear"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Crear Sendero"
-            android:layout_marginTop="15dp"/>
-
-        <Button
-            android:id="@+id/btnEliminar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Eliminar TODOS los senderos"
-            android:layout_marginTop="10dp"/>
-
+            android:text="✅ Crear Sendero"
+            android:backgroundTint="#0C8F48"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="8dp"/>
 
         <Button
             android:id="@+id/btnCargarDatos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cargar Senderos de Prueba"
-            android:layout_marginTop="10dp"/>
+            android:text="📦 Cargar Senderos de Prueba"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnEliminar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="🗑 Eliminar TODOS los senderos"
+            android:backgroundTint="#FF4444"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="8dp"/>
+
         <Button
             android:id="@+id/btnLogout"
             android:layout_width="match_parent"
@@ -70,7 +150,7 @@
             android:text="Cerrar sesión"
             android:backgroundTint="#D32F2F"
             android:textColor="#FFFFFF"
-            android:layout_margin="16dp"/>
+            android:layout_marginBottom="16dp"/>
 
     </LinearLayout>
 

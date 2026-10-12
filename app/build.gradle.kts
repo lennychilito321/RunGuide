@@ -43,13 +43,15 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation("androidx.recyclerview:recyclerview:1.3.2")
 
-    // Firebase BOM — UNA sola vez
+    // Firebase BOM — una sola versión para todos
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation("com.google.firebase:firebase-auth-ktx")
-    implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-database-ktx")
 
-    // Glide
+    // GPS — FusedLocationProviderClient
+    implementation("com.google.android.gms:play-services-location:21.3.0")
+
+    // Glide — imágenes desde URL
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
     // Tests

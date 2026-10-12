@@ -1,69 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="10dp"
-    tools:context=".SenderosActivity">
+    android:background="#F2F2F2">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Senderos disponibles"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:paddingBottom="10dp"
-        android:textAlignment="center"/>
-
-    <!-- FILTROS -->
-
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:backgroundTint="#D32F2F"
-        android:text="Cerrar sesión"
-        android:textColor="#FFFFFF" />
-
+    <!-- HEADER -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:gravity="center"
-        android:paddingBottom="10dp">
+        android:background="#0C8F48"
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        android:layout_marginTop="50dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text=" RunGuide"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF" />
 
         <Button
-            android:id="@+id/btnTodos"
+            android:id="@+id/btnDashboard"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Todos"/>
+            android:layout_height="36dp"
+            android:text="Mi perfil"
+            android:textSize="12sp"
+            android:backgroundTint="#FFFFFF"
+            android:textColor="#0C8F48"
+            android:layout_marginEnd="6dp"/>
 
         <Button
-            android:id="@+id/btnFacil"
+            android:id="@+id/btnLogout"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Fácil"/>
-
-        <Button
-            android:id="@+id/btnModerado"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Moderada"/>
-
-        <Button
-            android:id="@+id/btnDificil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Difícil"/>
+            android:layout_height="36dp"
+            android:text="Salir"
+            android:textSize="12sp"
+            android:backgroundTint="#D32F2F"
+            android:textColor="#FFFFFF" />
 
     </LinearLayout>
 
+    <!-- FILTROS DIFICULTAD -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp">
+
+            <Button
+                android:id="@+id/btnTodos"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Todas"
+                android:textSize="12sp"
+                android:backgroundTint="#0C8F48"
+                android:textColor="#FFFFFF"
+                android:layout_marginEnd="6dp"/>
+
+            <Button
+                android:id="@+id/btnFacil"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Fácil"
+                android:textSize="12sp"
+                android:backgroundTint="#E0E0E0"
+                android:textColor="#333333"
+                android:layout_marginEnd="6dp"/>
+
+            <Button
+                android:id="@+id/btnModerado"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Moderada"
+                android:textSize="12sp"
+                android:backgroundTint="#E0E0E0"
+                android:textColor="#333333"
+                android:layout_marginEnd="6dp"/>
+
+            <Button
+                android:id="@+id/btnDificil"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Difícil"
+                android:textSize="12sp"
+                android:backgroundTint="#E0E0E0"
+                android:textColor="#333333"/>
+
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- CONTADOR -->
+    <TextView
+        android:id="@+id/tvContador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rutas Disponibles (0)"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#1C1C1C"
+        android:padding="14dp" />
+
+    <!-- LISTA -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerSenderos"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

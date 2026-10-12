@@ -4,12 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.database.FirebaseDatabase
 import com.lennychilito.runguide.databinding.ItemSenderoBinding
 
 class SenderoAdapter(
     private val lista: MutableList<Sendero>,
-    private val rol: String
+    private val rol: String,
+    private val onVerRuta: (Sendero) -> Unit   // callback → abre DetalleSenderoActivity
 ) : RecyclerView.Adapter<SenderoAdapter.ViewHolder>() {
 
     class ViewHolder(val binding: ItemSenderoBinding) :
@@ -28,30 +29,40 @@ class SenderoAdapter(
         val s = lista[position]
 
         holder.binding.tvNombreSendero.text = s.nombre
-        holder.binding.tvUbicacion.text = s.ubicacion
-        holder.binding.tvDistancia.text = s.distancia
-        holder.binding.tvRating.text = "⭐ ${s.rating}"
+        holder.binding.tvUbicacion.text     = "📍 ${s.tipoTerreno.ifEmpty { s.ubicacion }}"
+        holder.binding.tvDistancia.text     = "${s.distancia} km"
+        holder.binding.tvRating.text        = "⭐ ${s.rating} (0)"
+        holder.binding.tvDificultad.text    = s.dificultad
 
-        // Cargar imagen desde URL con Glide
-        if (s.imagenUrl.isNotEmpty()) {
-            Glide.with(holder.itemView.context)
-                .load(s.imagenUrl)
-                .placeholder(R.drawable.montana) // imagen local como fallback
-                .into(holder.binding.imgSendero)
-        } else {
-            holder.binding.imgSendero.setImageResource(R.drawable.montana)
+        // Imagen con Base64 primero, luego URL, luego drawable local
+        when {
+            s.imagenBase64.isNotEmpty() -> {
+                val bytes = android.util.Base64.decode(s.imagenBase64, android.util.Base64.DEFAULT)
+                val bmp = android.graphics.BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
+                holder.binding.imgSendero.setImageBitmap(bmp)
+            }
+            s.imagenUrl.isNotEmpty() -> {
+                Glide.with(holder.itemView.context)
+                    .load(s.imagenUrl)
+                    .placeholder(R.drawable.montana)
+                    .into(holder.binding.imgSendero)
+            }
+            else -> holder.binding.imgSendero.setImageResource(R.drawable.montana)
         }
 
-        // Solo admin ve el botón eliminar
+        // Botón Ver Ruta
+        holder.binding.btnVerRuta.setOnClickListener { onVerRuta(s) }
+
+        // Eliminar — solo admin
         if (rol == "admin") {
             holder.binding.btnEliminar.visibility = android.view.View.VISIBLE
             holder.binding.btnEliminar.setOnClickListener {
-                // Eliminar por ID del documento en Firestore
                 if (s.id.isNotEmpty()) {
-                    FirebaseFirestore.getInstance()
-                        .collection("senderos")
-                        .document(s.id)
-                        .delete()
+                    FirebaseDatabase
+                        .getInstance("https://runner-app-f6214-default-rtdb.firebaseio.com/")
+                        .getReference("senderos")
+                        .child(s.id)
+                        .removeValue()
                         .addOnSuccessListener {
                             val idx = lista.indexOf(s)
                             if (idx != -1) {

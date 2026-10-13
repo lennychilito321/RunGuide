@@ -6,7 +6,7 @@ data class Sendero(
     val ubicacion: String = "",
     val distancia: String = "",
     val dificultad: String = "",
-    val rating: String = "0.0",
+    val rating: Double = 0.0, // <-- Corregido: sin comillas para que sea un Double
     val imagenUrl: String = "",
     val imagenBase64: String = "",
     val descripcion: String = "",

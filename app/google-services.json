@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "27212644526-tbkfsplgki239rpvvbbh981s5u1p03pv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.lennychilito.runguide",
+            "certificate_hash": "c44b954accc14bb3086934280ef487233f28a71a"
+          }
+        },
+        {
           "client_id": "27212644526-7btajsv5ecghund4aubanm3nq1cpoh97.apps.googleusercontent.com",
           "client_type": 3
         }

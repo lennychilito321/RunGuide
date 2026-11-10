@@ -1,37 +1,37 @@
 package com.lennychilito.runguide
 
 import android.Manifest
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
-import com.google.android.gms.maps.SupportMapFragment
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.Marker
-import com.google.android.gms.maps.model.MarkerOptions
+import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.Priority
+import com.google.android.gms.tasks.CancellationTokenSource
 import com.lennychilito.runguide.databinding.ActivityElegirUbicacionBinding
+import org.osmdroid.events.MapEventsReceiver
+import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.overlay.MapEventsOverlay
+import org.osmdroid.views.overlay.Marker
 import java.util.Locale
 
 /**
- * Solo admin: mapa de Google para elegir la ubicación exacta de un sendero.
+ * Solo admin: mapa (OpenStreetMap) para elegir la ubicación exacta de un sendero.
  * Recibe LAT/LNG opcionales (para editar) y devuelve LAT/LNG al confirmar.
+ * Se toca el mapa para colocar el punto; con el dedo sobre el marcador se puede arrastrar.
  */
-class ElegirUbicacionActivity : AppCompatActivity(), OnMapReadyCallback {
+class ElegirUbicacionActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityElegirUbicacionBinding
-    private var mapa: GoogleMap? = null
     private var marcador: Marker? = null
-    private var seleccion: LatLng? = null
+    private var seleccion: GeoPoint? = null
 
     private val pedirPermiso = registerForActivityResult(
         ActivityResultContracts.RequestPermission()
-    ) { concedido -> if (concedido) activarMiUbicacion() }
+    ) { concedido -> if (concedido) irAMiUbicacion() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +42,28 @@ class ElegirUbicacionActivity : AppCompatActivity(), OnMapReadyCallback {
 
         val lat = intent.getDoubleExtra("LAT", Double.NaN)
         val lng = intent.getDoubleExtra("LNG", Double.NaN)
-        if (!lat.isNaN() && !lng.isNaN()) seleccion = LatLng(lat, lng)
+        if (!lat.isNaN() && !lng.isNaN()) seleccion = GeoPoint(lat, lng)
+
+        val mapa = binding.mapaElegir
+        mapa.configurar(this)
+
+        // Si ya había ubicación, se centra ahí; si no, en Popayán
+        mapa.controller.setZoom(if (seleccion != null) 17.0 else 13.0)
+        mapa.controller.setCenter(seleccion ?: CENTRO_POR_DEFECTO)
+        seleccion?.let { colocar(it) }
+
+        // Un toque en el mapa coloca el punto
+        mapa.overlays.add(0, MapEventsOverlay(object : MapEventsReceiver {
+            override fun singleTapConfirmedHelper(p: GeoPoint): Boolean {
+                colocar(p)
+                return true
+            }
+
+            override fun longPressHelper(p: GeoPoint): Boolean = false
+        }))
 
         binding.btnVolverMapa.setOnClickListener { finish() }
+        binding.btnMiUbicacion.setOnClickListener { pedirMiUbicacion() }
         binding.btnConfirmarUbicacion.setOnClickListener {
             val p = seleccion ?: return@setOnClickListener
             setResult(
@@ -53,49 +72,32 @@ class ElegirUbicacionActivity : AppCompatActivity(), OnMapReadyCallback {
             )
             finish()
         }
-
-        (supportFragmentManager.findFragmentById(R.id.mapaElegir) as SupportMapFragment)
-            .getMapAsync(this)
     }
 
-    override fun onMapReady(m: GoogleMap) {
-        mapa = m
-        m.uiSettings.isZoomControlsEnabled = true
-        // Deja libres los controles del mapa: la barra de arriba y el panel de abajo los taparían
-        val d = resources.displayMetrics.density
-        m.setPadding(0, (110 * d).toInt(), 0, (150 * d).toInt())
-
-        // Si ya había ubicación, se centra ahí; si no, en Popayán
-        val inicio = seleccion ?: LatLng(2.4419, -76.6063)
-        m.moveCamera(CameraUpdateFactory.newLatLngZoom(inicio, if (seleccion != null) 16f else 13f))
-        seleccion?.let { colocar(it) }
-
-        m.setOnMapClickListener { colocar(it) }
-        m.setOnMarkerDragListener(object : GoogleMap.OnMarkerDragListener {
-            override fun onMarkerDragStart(marker: Marker) {}
-            override fun onMarkerDrag(marker: Marker) {}
-            override fun onMarkerDragEnd(marker: Marker) {
-                seleccion = marker.position
-                mostrarCoordenadas(marker.position)
-            }
-        })
-
-        // Botón "mi ubicación" si el usuario da permiso (opcional)
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-            == PackageManager.PERMISSION_GRANTED
-        ) activarMiUbicacion()
-        else pedirPermiso.launch(Manifest.permission.ACCESS_FINE_LOCATION)
-    }
-
-    private fun colocar(p: LatLng) {
-        marcador?.remove()
-        marcador = mapa?.addMarker(MarkerOptions().position(p).draggable(true))
+    /** Coloca el marcador (arrastrable) en [p] y actualiza las coordenadas. */
+    private fun colocar(p: GeoPoint) {
+        val mapa = binding.mapaElegir
+        val m = marcador ?: mapa.marcador(p).also { nuevo ->
+            nuevo.isDraggable = true
+            nuevo.setOnMarkerDragListener(object : Marker.OnMarkerDragListener {
+                override fun onMarkerDragStart(marker: Marker) {}
+                override fun onMarkerDrag(marker: Marker) {}
+                override fun onMarkerDragEnd(marker: Marker) {
+                    seleccion = GeoPoint(marker.position.latitude, marker.position.longitude)
+                    mostrarCoordenadas(marker.position)
+                }
+            })
+            marcador = nuevo
+            mapa.overlays.add(nuevo)
+        }
+        m.position = p
         seleccion = p
         mostrarCoordenadas(p)
         binding.btnConfirmarUbicacion.isEnabled = true
+        mapa.invalidate()
     }
 
-    private fun mostrarCoordenadas(p: LatLng) {
+    private fun mostrarCoordenadas(p: GeoPoint) {
         binding.tvInstruccionMapa.text = getString(
             R.string.ubicacion_coords,
             String.format(Locale.US, "%.5f", p.latitude),
@@ -103,8 +105,43 @@ class ElegirUbicacionActivity : AppCompatActivity(), OnMapReadyCallback {
         )
     }
 
-    @SuppressLint("MissingPermission")
-    private fun activarMiUbicacion() {
-        mapa?.isMyLocationEnabled = true
+    // ── Mi ubicación (GPS del teléfono) ──────────────────────────────────────────
+    private fun pedirMiUbicacion() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+            == PackageManager.PERMISSION_GRANTED
+        ) irAMiUbicacion()
+        else pedirPermiso.launch(Manifest.permission.ACCESS_FINE_LOCATION)
+    }
+
+    @Suppress("MissingPermission")
+    private fun irAMiUbicacion() {
+        LocationServices.getFusedLocationProviderClient(this)
+            .getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, CancellationTokenSource().token)
+            .addOnSuccessListener { l ->
+                if (l == null) {
+                    Toast.makeText(this, getString(R.string.sin_ubicacion_actual), Toast.LENGTH_SHORT).show()
+                } else {
+                    binding.mapaElegir.controller.setZoom(17.0)
+                    binding.mapaElegir.controller.animateTo(GeoPoint(l.latitude, l.longitude))
+                }
+            }
+            .addOnFailureListener {
+                Toast.makeText(this, getString(R.string.sin_ubicacion_actual), Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.mapaElegir.onResume()
+    }
+
+    override fun onPause() {
+        binding.mapaElegir.onPause()
+        super.onPause()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        binding.mapaElegir.onDetach()
     }
 }

@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/fondo_app">
+    android:background="@android:color/transparent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -298,11 +298,40 @@
                 android:textColor="@color/texto_principal"
                 android:layout_marginBottom="10dp" />
 
+            <!-- Mapa de vista previa: no se mueve; al tocarlo abre el resumen de la ruta -->
             <FrameLayout
-                android:id="@+id/mapaContenedor"
                 android:layout_width="match_parent"
                 android:layout_height="190dp"
-                android:background="@color/gris_campo" />
+                android:background="@color/gris_campo">
+
+                <org.osmdroid.views.MapView
+                    android:id="@+id/mapaDetalle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <View
+                    android:id="@+id/mapaToque"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:contentDescription="@string/ver_resumen_ruta" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|start"
+                    android:layout_margin="10dp"
+                    android:text="@string/ver_resumen_ruta"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/verde_oscuro"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp"
+                    android:paddingTop="6dp"
+                    android:paddingBottom="6dp"
+                    android:background="@drawable/bg_badge" />
+            </FrameLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

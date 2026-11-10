@@ -58,5 +58,6 @@ class RunGuideApp : Application() {
     override fun onCreate() {
         super.onCreate()
         Ajustes.aplicarGuardado(this)
+        configurarOsmdroid()
     }
 }

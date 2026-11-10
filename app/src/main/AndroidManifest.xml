@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- INTERNET para Firebase -->
+    <!-- INTERNET para Firebase y para descargar los mapas de OpenStreetMap -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <!-- GPS: ubicación precisa mientras la app está en primer plano -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -14,10 +15,10 @@
         android:label="@string/app_name"
         android:theme="@style/Theme.RunGuide">
 
-        <!-- Clave de Google Maps (se lee de MAPS_API_KEY en local.properties) -->
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
+        <!-- Resumen de la ruta: mapa, datos y botón para iniciarla -->
+        <activity
+            android:name=".RutaResumenActivity"
+            android:exported="false" />
 
         <!-- Elegir la ubicación de un sendero en el mapa (solo admin) -->
         <activity
@@ -64,7 +65,8 @@
         <!-- Cronómetro GPS mientras se corre -->
         <activity
             android:name=".CronometroActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:screenOrientation="portrait" />
 
         <!-- Dashboard del usuario -->
         <activity

@@ -1,16 +1,7 @@
-import java.util.Properties
-
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
-}
-
-// La clave de Google Maps vive en local.properties (que NO se sube a GitHub):
-//   MAPS_API_KEY=tu_clave
-val localProps = Properties().apply {
-    val archivo = rootProject.file("local.properties")
-    if (archivo.exists()) archivo.inputStream().use { load(it) }
 }
 
 android {
@@ -33,7 +24,6 @@ android {
         versionCode = 1
         versionName = "1.0"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        manifestPlaceholders["MAPS_API_KEY"] = localProps.getProperty("MAPS_API_KEY", "")
     }
 
     compileOptions {
@@ -65,11 +55,11 @@ dependencies {
     implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.7")
 
-    // GPS — FusedLocationProviderClient
+    // GPS — FusedLocationProviderClient (ubicación del teléfono, sin costo)
     implementation("com.google.android.gms:play-services-location:21.3.0")
 
-    // Google Maps — mapa del sendero y selector de ubicación
-    implementation("com.google.android.gms:play-services-maps:18.2.0")
+    // Mapas — OpenStreetMap con osmdroid (gratis, sin clave de API)
+    implementation("org.osmdroid:osmdroid-android:6.1.18")
 
     // Glide — imágenes desde URL
     implementation("com.github.bumptech.glide:glide:4.16.0")

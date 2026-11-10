@@ -18,6 +18,8 @@
 
     <color name="superficie">#FFFFFF</color>
     <color name="fondo_app">#F5F6F4</color>
+    <!-- Velo sobre la imagen de fondo: aclara el paisaje para que el texto se lea -->
+    <color name="velo_fondo">#4DF5F6F4</color>
     <color name="gris_campo">#EEF0EE</color>
     <color name="borde">#E2E6E3</color>
 

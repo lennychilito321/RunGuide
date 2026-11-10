@@ -3,6 +3,8 @@
     <!-- Modo oscuro: mismos nombres, tonos más apagados para no cansar la vista -->
     <color name="superficie">#1A1F1D</color>
     <color name="fondo_app">#111514</color>
+    <!-- En modo oscuro el paisaje se ve tenue, casi como una textura -->
+    <color name="velo_fondo">#D1101614</color>
     <color name="gris_campo">#242B28</color>
     <color name="borde">#2C3532</color>
 

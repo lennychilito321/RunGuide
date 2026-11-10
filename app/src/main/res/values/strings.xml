@@ -191,15 +191,24 @@
 
     <!-- ========== Mapa ========== -->
     <string name="ubicacion_mapa_titulo">📍 Ubicación del sendero</string>
-    <string name="abrir_en_maps">Abrir en Google Maps</string>
+    <string name="abrir_en_maps">Abrir en mapas</string>
     <string name="como_llegar">Cómo llegar</string>
     <string name="sin_ubicacion">Sin ubicación seleccionada</string>
-    <string name="elegir_en_maps">🗺 Elegir ubicación en Google Maps</string>
+    <string name="elegir_en_maps">🗺 Elegir ubicación en el mapa</string>
     <string name="cambiar_ubicacion">🗺 Cambiar ubicación</string>
     <string name="ubicacion_coords">✅ Ubicación: %1$s, %2$s</string>
     <string name="confirmar_ubicacion">✅ Confirmar ubicación</string>
     <string name="elegir_ubicacion_titulo">Elige la ubicación</string>
-    <string name="toca_mapa">Toca el mapa para colocar el punto. Puedes arrastrarlo para ajustarlo.</string>
+    <string name="toca_mapa">Toca el mapa para colocar el punto. Mantén pulsado el marcador para arrastrarlo.</string>
+    <string name="mi_ubicacion">📍 Mi ubicación</string>
+    <string name="sin_ubicacion_actual">No se pudo obtener tu ubicación</string>
+    <string name="ver_resumen_ruta">Ver resumen de la ruta</string>
+    <string name="resumen_ruta_titulo">RESUMEN DE LA RUTA</string>
+    <string name="sin_ubicacion_sendero">Este sendero aún no tiene ubicación en el mapa</string>
+    <string name="punto_inicio">Inicio del sendero</string>
+    <string name="centrar_mapa">Centrar en mi posición</string>
+    <string name="progreso_ruta">%1$s de %2$s km</string>
+    <string name="tiempo_estimado_ruta">Tiempo estimado: %1$d min</string>
     <string name="sin_app_mapas">No se pudo abrir el mapa en este dispositivo</string>
 
     <!-- ========== Ajustes ========== -->

@@ -191,15 +191,24 @@
 
     <!-- ========== Map ========== -->
     <string name="ubicacion_mapa_titulo">📍 Trail location</string>
-    <string name="abrir_en_maps">Open in Google Maps</string>
+    <string name="abrir_en_maps">Open in maps</string>
     <string name="como_llegar">Get directions</string>
     <string name="sin_ubicacion">No location selected</string>
-    <string name="elegir_en_maps">🗺 Pick location on Google Maps</string>
+    <string name="elegir_en_maps">🗺 Pick location on the map</string>
     <string name="cambiar_ubicacion">🗺 Change location</string>
     <string name="ubicacion_coords">✅ Location: %1$s, %2$s</string>
     <string name="confirmar_ubicacion">✅ Confirm location</string>
     <string name="elegir_ubicacion_titulo">Choose the location</string>
-    <string name="toca_mapa">Tap the map to drop the pin. You can drag it to fine-tune it.</string>
+    <string name="toca_mapa">Tap the map to drop the pin. Press and hold the marker to drag it.</string>
+    <string name="mi_ubicacion">📍 My location</string>
+    <string name="sin_ubicacion_actual">Couldn\'t get your location</string>
+    <string name="ver_resumen_ruta">View route summary</string>
+    <string name="resumen_ruta_titulo">ROUTE SUMMARY</string>
+    <string name="sin_ubicacion_sendero">This trail has no map location yet</string>
+    <string name="punto_inicio">Trail start</string>
+    <string name="centrar_mapa">Center on my position</string>
+    <string name="progreso_ruta">%1$s of %2$s km</string>
+    <string name="tiempo_estimado_ruta">Estimated time: %1$d min</string>
     <string name="sin_app_mapas">Couldn\'t open the map on this device</string>
 
     <!-- ========== Settings ========== -->

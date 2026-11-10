@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/negro_carbon">
+    android:background="@android:color/transparent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,7 +27,7 @@
                 android:text="@string/hola_usuario"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:textColor="#FFFFFF"/>
+                android:textColor="@color/texto_principal"/>
 
             <Button
                 android:id="@+id/btnVolver"
@@ -53,7 +53,7 @@
                 android:layout_height="100dp"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@drawable/bg_card_dark"
+                android:background="@drawable/bg_card"
                 android:layout_marginEnd="8dp">
 
                 <TextView
@@ -69,14 +69,14 @@
                     android:text="0"
                     android:textSize="26sp"
                     android:textStyle="bold"
-                    android:textColor="#FFFFFF"/>
+                    android:textColor="@color/texto_principal"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/km_totales"
                     android:textSize="10sp"
-                    android:textColor="#9AA3A0"/>
+                    android:textColor="@color/texto_secundario"/>
 
             </LinearLayout>
 
@@ -86,7 +86,7 @@
                 android:layout_height="100dp"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@drawable/bg_card_dark"
+                android:background="@drawable/bg_card"
                 android:layout_marginStart="8dp">
 
                 <TextView
@@ -102,14 +102,14 @@
                     android:text="0"
                     android:textSize="26sp"
                     android:textStyle="bold"
-                    android:textColor="#FFFFFF"/>
+                    android:textColor="@color/texto_principal"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/actividades"
                     android:textSize="10sp"
-                    android:textColor="#9AA3A0"/>
+                    android:textColor="@color/texto_secundario"/>
 
             </LinearLayout>
 
@@ -126,7 +126,7 @@
                 android:layout_height="100dp"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@drawable/bg_card_dark"
+                android:background="@drawable/bg_card"
                 android:layout_marginEnd="8dp">
 
                 <TextView
@@ -142,14 +142,14 @@
                     android:text="—"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:textColor="#FFFFFF"/>
+                    android:textColor="@color/texto_principal"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ritmo_prom"
                     android:textSize="10sp"
-                    android:textColor="#9AA3A0"/>
+                    android:textColor="@color/texto_secundario"/>
 
             </LinearLayout>
 
@@ -159,7 +159,7 @@
                 android:layout_height="100dp"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="@drawable/bg_card_dark"
+                android:background="@drawable/bg_card"
                 android:layout_marginStart="8dp">
 
                 <TextView
@@ -175,14 +175,14 @@
                     android:text="—"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:textColor="#FFFFFF"/>
+                    android:textColor="@color/texto_principal"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/mejor_tiempo"
                     android:textSize="10sp"
-                    android:textColor="#9AA3A0"/>
+                    android:textColor="@color/texto_secundario"/>
 
             </LinearLayout>
 

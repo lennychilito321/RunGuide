@@ -1,5 +1,6 @@
 package com.lennychilito.runguide
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Bitmap
@@ -12,6 +13,11 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMapOptions
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -87,6 +93,11 @@ class DetalleSenderoActivity : AppCompatActivity() {
         // Volver
         binding.btnVolver.setOnClickListener { finish() }
 
+        // Mapa (solo si el admin le puso ubicación al sendero)
+        val lat = intent.getDoubleExtra("LAT", Double.NaN)
+        val lng = intent.getDoubleExtra("LNG", Double.NaN)
+        if (!lat.isNaN() && !lng.isNaN()) configurarMapa(nombre, lat, lng)
+
         // Iniciar ruta
         binding.btnIniciarRuta.setOnClickListener {
             val i = Intent(this, CronometroActivity::class.java)
@@ -123,6 +134,51 @@ class DetalleSenderoActivity : AppCompatActivity() {
             binding.btnEnviarResena.text      = getString(R.string.login_para_resenar)
             binding.btnFotoResena.isEnabled   = false
             deshabilitarEstrellas()
+        }
+    }
+
+    // ── MAPA ──────────────────────────────────────────────────────────────────
+    private fun configurarMapa(nombre: String, lat: Double, lng: Double) {
+        binding.cardMapa.visibility = android.view.View.VISIBLE
+
+        // Mapa "lite": una vista ligera que no pelea con el scroll de la pantalla
+        val fragmento = SupportMapFragment.newInstance(
+            GoogleMapOptions().liteMode(true).mapToolbarEnabled(false)
+        )
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.mapaContenedor, fragmento)
+            .commit()
+
+        fragmento.getMapAsync { mapa ->
+            val posicion = LatLng(lat, lng)
+            mapa.addMarker(MarkerOptions().position(posicion).title(nombre))
+            mapa.moveCamera(CameraUpdateFactory.newLatLngZoom(posicion, 15f))
+        }
+
+        binding.btnAbrirMapa.setOnClickListener {
+            abrirUrlOMapa(
+                Uri.parse("geo:$lat,$lng?q=$lat,$lng(${Uri.encode(nombre)})"),
+                Uri.parse("https://www.google.com/maps/search/?api=1&query=$lat,$lng")
+            )
+        }
+        binding.btnComoLlegar.setOnClickListener {
+            abrirUrlOMapa(
+                Uri.parse("https://www.google.com/maps/dir/?api=1&destination=$lat,$lng"),
+                Uri.parse("https://www.google.com/maps/dir/?api=1&destination=$lat,$lng")
+            )
+        }
+    }
+
+    /** Intenta abrir [principal] (app de mapas) y, si no hay app, [alternativa] en el navegador. */
+    private fun abrirUrlOMapa(principal: Uri, alternativa: Uri) {
+        try {
+            startActivity(Intent(Intent.ACTION_VIEW, principal))
+        } catch (e: ActivityNotFoundException) {
+            try {
+                startActivity(Intent(Intent.ACTION_VIEW, alternativa))
+            } catch (e2: ActivityNotFoundException) {
+                Toast.makeText(this, getString(R.string.sin_app_mapas), Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

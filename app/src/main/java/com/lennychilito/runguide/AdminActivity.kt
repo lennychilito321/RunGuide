@@ -1,5 +1,6 @@
 package com.lennychilito.runguide
 
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.net.Uri
@@ -35,6 +36,19 @@ class AdminActivity : AppCompatActivity() {
     private val terrenos = arrayOf("Tierra", "Asfalto", "Montaña", "Mixto")
     private var dificultadSel = ""
     private var terrenoSel = ""
+    private var lat: Double? = null     // ubicación elegida en el mapa
+    private var lng: Double? = null
+
+    private val elegirUbicacion = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { resultado ->
+        val datos = resultado.data
+        if (resultado.resultCode == RESULT_OK && datos != null) {
+            lat = datos.getDoubleExtra("LAT", Double.NaN).takeUnless { it.isNaN() }
+            lng = datos.getDoubleExtra("LNG", Double.NaN).takeUnless { it.isNaN() }
+            actualizarUbicacion()
+        }
+    }
 
     private val elegirFoto = registerForActivityResult(
         ActivityResultContracts.GetContent()
@@ -57,6 +71,13 @@ class AdminActivity : AppCompatActivity() {
         }
         binding.etTipoTerreno.elegirDeLista(R.string.dlg_terreno, terrenos, { terrenoLocal(it) }) {
             terrenoSel = it
+        }
+
+        binding.btnElegirUbicacion.setOnClickListener {
+            val i = Intent(this, ElegirUbicacionActivity::class.java)
+            lat?.let { i.putExtra("LAT", it) }
+            lng?.let { i.putExtra("LNG", it) }
+            elegirUbicacion.launch(i)
         }
 
         binding.btnElegirFoto.setOnClickListener { elegirFoto.launch("image/*") }
@@ -88,6 +109,23 @@ class AdminActivity : AppCompatActivity() {
         }
     }
 
+    /** Muestra las coordenadas elegidas y cambia el texto del botón. */
+    private fun actualizarUbicacion() {
+        val la = lat
+        val lo = lng
+        if (la != null && lo != null) {
+            binding.tvUbicacionMapa.text = getString(
+                R.string.ubicacion_coords,
+                String.format(java.util.Locale.US, "%.5f", la),
+                String.format(java.util.Locale.US, "%.5f", lo)
+            )
+            binding.btnElegirUbicacion.text = getString(R.string.cambiar_ubicacion)
+        } else {
+            binding.tvUbicacionMapa.text = getString(R.string.sin_ubicacion)
+            binding.btnElegirUbicacion.text = getString(R.string.elegir_en_maps)
+        }
+    }
+
     private fun cargarSendero() {
         Rtdb.ref.child("senderos/$senderoId")
             .addListenerForSingleValueEvent(object : ValueEventListener {
@@ -100,6 +138,9 @@ class AdminActivity : AppCompatActivity() {
                     }
                     binding.etNombre.setText(s.nombre)
                     binding.etUbicacion.setText(s.ubicacion)
+                    lat = s.lat
+                    lng = s.lng
+                    actualizarUbicacion()
                     dificultadSel = s.dificultad
                     terrenoSel = s.tipoTerreno
                     binding.etDificultad.setText(dificultadLocal(s.dificultad))
@@ -144,6 +185,13 @@ class AdminActivity : AppCompatActivity() {
             "imagenBase64"   to imagenBase64,
             "imagenUrl"      to ""
         )
+
+        val la = lat
+        val lo = lng
+        if (la != null && lo != null) {
+            datos["lat"] = la
+            datos["lng"] = lo
+        }
 
         binding.btnCrear.isEnabled = false
         val tarea = if (esEdicion) {

@@ -189,6 +189,19 @@
     <string name="login_guardar_t">Sign in to save</string>
     <string name="login_guardar_m">You need an account to save trails to your favorites.</string>
 
+    <!-- ========== Map ========== -->
+    <string name="ubicacion_mapa_titulo">📍 Trail location</string>
+    <string name="abrir_en_maps">Open in Google Maps</string>
+    <string name="como_llegar">Get directions</string>
+    <string name="sin_ubicacion">No location selected</string>
+    <string name="elegir_en_maps">🗺 Pick location on Google Maps</string>
+    <string name="cambiar_ubicacion">🗺 Change location</string>
+    <string name="ubicacion_coords">✅ Location: %1$s, %2$s</string>
+    <string name="confirmar_ubicacion">✅ Confirm location</string>
+    <string name="elegir_ubicacion_titulo">Choose the location</string>
+    <string name="toca_mapa">Tap the map to drop the pin. You can drag it to fine-tune it.</string>
+    <string name="sin_app_mapas">Couldn\'t open the map on this device</string>
+
     <!-- ========== Settings ========== -->
     <string name="ajustes">Settings</string>
     <string name="ajustes_btn">⚙ Settings</string>

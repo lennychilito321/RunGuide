@@ -25,7 +25,9 @@ fun DataSnapshot.toSendero(): Sendero? {
         descripcion = child("descripcion").value?.toString().orEmpty(),
         elevacion = child("elevacion").value?.toString() ?: "0m",
         tipoTerreno = child("tipoTerreno").value?.toString().orEmpty(),
-        tiempoEstimado = child("tiempoEstimado").value?.toString() ?: "0"
+        tiempoEstimado = child("tiempoEstimado").value?.toString() ?: "0",
+        lat = child("lat").value?.toString()?.toDoubleOrNull(),
+        lng = child("lng").value?.toString()?.toDoubleOrNull()
     )
 }
 
@@ -43,6 +45,8 @@ fun Context.abrirDetalle(s: Sendero) {
         putExtra("ELEVACION", s.elevacion)
         putExtra("TIPO_TERRENO", s.tipoTerreno.ifEmpty { s.ubicacion })
         putExtra("TIEMPO_ESTIMADO", s.tiempoEstimado)
+        putExtra("LAT", s.lat ?: Double.NaN)
+        putExtra("LNG", s.lng ?: Double.NaN)
     })
 }
 

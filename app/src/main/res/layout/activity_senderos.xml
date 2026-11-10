@@ -6,7 +6,11 @@
     android:orientation="vertical"
     android:background="@color/fondo_app">
 
-    <!-- HEADER -->
+    <!-- HEADER (con el botón de ajustes arriba a la izquierda) -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -66,19 +70,6 @@
                 android:layout_marginEnd="8dp" />
 
             <Button
-                android:id="@+id/btnAjustes"
-                android:layout_width="44dp"
-                android:layout_height="40dp"
-                android:minWidth="0dp"
-                android:padding="0dp"
-                android:text="⚙"
-                android:textSize="16sp"
-                android:contentDescription="@string/ajustes"
-                android:backgroundTint="#33FFFFFF"
-                android:textColor="#FFFFFF"
-                android:layout_marginEnd="8dp" />
-
-            <Button
                 android:id="@+id/btnLogout"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
@@ -123,6 +114,24 @@
         </LinearLayout>
 
     </LinearLayout>
+
+        <!-- Ajustes: esquina superior izquierda -->
+        <Button
+            android:id="@+id/btnAjustes"
+            android:layout_width="44dp"
+            android:layout_height="40dp"
+            android:layout_gravity="top|start"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="12dp"
+            android:minWidth="0dp"
+            android:padding="0dp"
+            android:text="⚙"
+            android:textSize="18sp"
+            android:contentDescription="@string/ajustes"
+            android:backgroundTint="#33FFFFFF"
+            android:textColor="#FFFFFF" />
+
+    </FrameLayout>
 
     <!-- FILTROS DIFICULTAD -->
     <HorizontalScrollView

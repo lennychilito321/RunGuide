@@ -276,6 +276,65 @@
 
         </LinearLayout>
 
+        <!-- UBICACIÓN EN GOOGLE MAPS (solo si el sendero tiene coordenadas) -->
+        <LinearLayout
+            android:id="@+id/cardMapa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/bg_card"
+            android:padding="16dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ubicacion_mapa_titulo"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/texto_principal"
+                android:layout_marginBottom="10dp" />
+
+            <FrameLayout
+                android:id="@+id/mapaContenedor"
+                android:layout_width="match_parent"
+                android:layout_height="190dp"
+                android:background="@color/gris_campo" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="12dp">
+
+                <Button
+                    android:id="@+id/btnAbrirMapa"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="48dp"
+                    android:text="@string/abrir_en_maps"
+                    android:textSize="13sp"
+                    android:textColor="@color/texto_principal"
+                    android:layout_marginEnd="6dp" />
+
+                <Button
+                    android:id="@+id/btnComoLlegar"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="48dp"
+                    android:text="@string/como_llegar"
+                    android:textSize="13sp"
+                    android:backgroundTint="@color/verde_primario"
+                    android:textColor="#FFFFFF"
+                    android:layout_marginStart="6dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
         <!-- SECCIÓN RESEÑA COMPLETA -->
         <LinearLayout
             android:layout_width="match_parent"

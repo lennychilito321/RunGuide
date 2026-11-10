@@ -102,6 +102,34 @@
             android:inputType="textMultiLine"
             android:layout_marginBottom="16dp"/>
 
+        <!-- UBICACIÓN EN GOOGLE MAPS -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ubicacion_mapa_titulo"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="@color/texto_principal"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvUbicacionMapa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sin_ubicacion"
+            android:textSize="13sp"
+            android:textColor="@color/texto_secundario"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/btnElegirUbicacion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/elegir_en_maps"
+            android:backgroundTint="@color/verde_primario"
+            android:textColor="#FFFFFF"
+            android:layout_marginBottom="16dp"/>
+
         <!-- SECCIÓN FOTO -->
         <TextView
             android:layout_width="wrap_content"

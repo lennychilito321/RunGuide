@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/fondo_app">
+
+    <!-- Mapa completo -->
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/mapaElegir"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <!-- Barra superior: volver + instrucción -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_header"
+        android:paddingTop="44dp"
+        android:paddingBottom="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <Button
+            android:id="@+id/btnVolverMapa"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/volver"
+            android:textSize="12sp"
+            android:backgroundTint="#FFFFFF"
+            android:textColor="@color/verde_primario"
+            android:layout_marginEnd="12dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/elegir_ubicacion_titulo"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <!-- Panel inferior: instrucción, coordenadas y confirmar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+        android:layout_margin="16dp"
+        android:background="@drawable/bg_card"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvInstruccionMapa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/toca_mapa"
+            android:textSize="13sp"
+            android:textColor="@color/texto_secundario" />
+
+        <Button
+            android:id="@+id/btnConfirmarUbicacion"
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:text="@string/confirmar_ubicacion"
+            android:enabled="false"
+            android:backgroundTint="@color/verde_primario"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="12dp" />
+    </LinearLayout>
+
+</FrameLayout>

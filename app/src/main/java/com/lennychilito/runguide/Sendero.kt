@@ -12,5 +12,9 @@ data class Sendero(
     val descripcion: String = "",
     val elevacion: String = "0m",
     val tipoTerreno: String = "",
-    val tiempoEstimado: String = "0"   // en minutos
-)
+    val tiempoEstimado: String = "0",  // en minutos
+    val lat: Double? = null,           // ubicación en el mapa (opcional)
+    val lng: Double? = null
+) {
+    val tieneUbicacion get() = lat != null && lng != null
+}

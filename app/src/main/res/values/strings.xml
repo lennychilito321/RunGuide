@@ -189,6 +189,19 @@
     <string name="login_guardar_t">Inicia sesión para guardar</string>
     <string name="login_guardar_m">Necesitas una cuenta para guardar senderos en tus favoritos.</string>
 
+    <!-- ========== Mapa ========== -->
+    <string name="ubicacion_mapa_titulo">📍 Ubicación del sendero</string>
+    <string name="abrir_en_maps">Abrir en Google Maps</string>
+    <string name="como_llegar">Cómo llegar</string>
+    <string name="sin_ubicacion">Sin ubicación seleccionada</string>
+    <string name="elegir_en_maps">🗺 Elegir ubicación en Google Maps</string>
+    <string name="cambiar_ubicacion">🗺 Cambiar ubicación</string>
+    <string name="ubicacion_coords">✅ Ubicación: %1$s, %2$s</string>
+    <string name="confirmar_ubicacion">✅ Confirmar ubicación</string>
+    <string name="elegir_ubicacion_titulo">Elige la ubicación</string>
+    <string name="toca_mapa">Toca el mapa para colocar el punto. Puedes arrastrarlo para ajustarlo.</string>
+    <string name="sin_app_mapas">No se pudo abrir el mapa en este dispositivo</string>
+
     <!-- ========== Ajustes ========== -->
     <string name="ajustes">Ajustes</string>
     <string name="ajustes_btn">⚙ Ajustes</string>

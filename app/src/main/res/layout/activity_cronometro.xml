@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#1A1A1A">
+    android:background="@color/negro_carbon">
 
     <!-- HEADER -->
     <LinearLayout
@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:text="🏃 ACTIVIDAD EN CURSO"
             android:textSize="13sp"
-            android:textColor="#AAAAAA"
+            android:textColor="#9AA3A0"
             android:letterSpacing="0.1"/>
 
         <TextView
@@ -39,7 +39,7 @@
         android:text="00:00"
         android:textSize="72sp"
         android:textStyle="bold"
-        android:textColor="#CDDC39"
+        android:textColor="@color/amarillo"
         android:gravity="center"
         android:fontFamily="monospace"
         android:layout_marginTop="10dp"/>
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:text="🟢 Corriendo..."
         android:textSize="14sp"
-        android:textColor="#AAAAAA"
+        android:textColor="#9AA3A0"
         android:gravity="center"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="30dp"/>
@@ -70,7 +70,7 @@
             android:layout_height="52dp"
             android:text="⏸ Pausar"
             android:textSize="15sp"
-            android:backgroundTint="#333333"
+            android:backgroundTint="@color/negro_suave"
             android:textColor="#FFFFFF"
             android:layout_marginEnd="16dp"/>
 
@@ -80,7 +80,7 @@
             android:layout_height="52dp"
             android:text="⏹ Finalizar"
             android:textSize="15sp"
-            android:backgroundTint="#D32F2F"
+            android:backgroundTint="@color/peligro"
             android:textColor="#FFFFFF"/>
 
     </LinearLayout>
@@ -99,7 +99,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="#2A2A2A"
+            android:background="@drawable/bg_card_dark"
             android:padding="16dp"
             android:layout_marginEnd="8dp">
 
@@ -123,7 +123,7 @@
                 android:layout_height="wrap_content"
                 android:text="KM RECORRIDOS"
                 android:textSize="10sp"
-                android:textColor="#AAAAAA"/>
+                android:textColor="#9AA3A0"/>
 
         </LinearLayout>
 
@@ -134,7 +134,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:background="#2A2A2A"
+            android:background="@drawable/bg_card_dark"
             android:padding="16dp"
             android:layout_marginStart="8dp">
 
@@ -158,7 +158,7 @@
                 android:layout_height="wrap_content"
                 android:text="MIN/KM"
                 android:textSize="10sp"
-                android:textColor="#AAAAAA"/>
+                android:textColor="#9AA3A0"/>
 
         </LinearLayout>
 

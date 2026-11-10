@@ -3,7 +3,11 @@
     <style name="Base.Theme.RunGuide" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/verde_primario</item>
         <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/amarillo</item>
+        <item name="colorOnSecondary">@color/negro_carbon</item>
         <item name="android:colorBackground">@color/fondo_app</item>
-        <item name="android:statusBarColor">@color/verde_primario</item>
+        <item name="android:statusBarColor">@color/negro_carbon</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="materialButtonStyle">@style/Widget.RunGuide.Button</item>
     </style>
 </resources>

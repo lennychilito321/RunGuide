@@ -31,6 +31,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
+        // Botón Continuar con Google
+        binding.btnGoogle.setOnClickListener {
+            iniciarConGoogle { irAPantallaPorRol() }
+        }
+
         // Botón Entrar como invitado
         binding.btnInvitado.setOnClickListener {
             val intent = Intent(this, SenderosActivity::class.java)

@@ -4,22 +4,38 @@
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorPrimaryContainer">@color/verde_claro</item>
         <item name="colorOnPrimaryContainer">@color/verde_oscuro</item>
+        <item name="colorSecondary">@color/amarillo</item>
+        <item name="colorOnSecondary">@color/negro_carbon</item>
+        <item name="colorSecondaryContainer">@color/amarillo_claro</item>
+        <item name="colorOnSecondaryContainer">@color/amarillo_texto</item>
+        <item name="colorOutline">@color/borde</item>
         <item name="android:colorBackground">@color/fondo_app</item>
-        <item name="android:statusBarColor">@color/verde_primario</item>
+        <item name="android:statusBarColor">@color/negro_carbon</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="materialButtonStyle">@style/Widget.RunGuide.Button</item>
         <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.RunGuide.Small</item>
         <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.RunGuide.Medium</item>
     </style>
 
     <style name="Theme.RunGuide" parent="Base.Theme.RunGuide" />
 
+    <!-- Botones planos, esquinas suaves, sin MAYÚSCULAS -->
+    <style name="Widget.RunGuide.Button" parent="Widget.Material3.Button">
+        <item name="cornerRadius">12dp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:stateListAnimator">@null</item>
+    </style>
+
     <!-- Esquinas redondeadas suaves para botones, chips y tarjetas -->
     <style name="ShapeAppearance.RunGuide.Small" parent="ShapeAppearance.Material3.SmallComponent">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">14dp</item>
+        <item name="cornerSize">12dp</item>
     </style>
 
     <style name="ShapeAppearance.RunGuide.Medium" parent="ShapeAppearance.Material3.MediumComponent">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">22dp</item>
+        <item name="cornerSize">18dp</item>
     </style>
 </resources>

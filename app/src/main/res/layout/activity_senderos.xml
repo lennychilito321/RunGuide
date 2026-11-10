@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:text="Encuentra tu próxima ruta"
             android:textSize="13sp"
-            android:textColor="#CFEBDB"
+            android:textColor="#BFD3C8"
             android:layout_marginBottom="12dp" />
 
         <LinearLayout
@@ -89,8 +89,8 @@
                 android:text="＋ Nuevo sendero"
                 android:textSize="12sp"
                 android:textAllCaps="false"
-                android:backgroundTint="#FFB300"
-                android:textColor="#1C1C1C"
+                android:backgroundTint="@color/amarillo"
+                android:textColor="@color/texto_principal"
                 android:layout_marginEnd="8dp" />
 
             <Button

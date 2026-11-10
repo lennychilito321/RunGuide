@@ -26,6 +26,11 @@ class RegisterActivity : AppCompatActivity() {
 
         btnBackToLogin.setOnClickListener { finish() }
 
+        // Registrarse (o entrar) con Google
+        findViewById<Button>(R.id.btnGoogleRegister).setOnClickListener {
+            iniciarConGoogle { irAlInicio() }
+        }
+
         btnRegister.setOnClickListener {
             val email = etEmail.text.toString().trim()
             val password = etPassword.text.toString()

@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2F2F2">
+    android:background="@color/fondo_app">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
                     android:layout_height="wrap_content"
                     android:text="📍 Tierra"
                     android:textSize="14sp"
-                    android:textColor="#EEEEEE" />
+                    android:textColor="@color/gris_campo" />
 
             </LinearLayout>
 
@@ -70,7 +70,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:background="#FFFFFF"
+            android:layout_margin="16dp"
+            android:background="@drawable/bg_card"
             android:padding="16dp">
 
             <LinearLayout
@@ -85,7 +86,7 @@
                     android:layout_height="wrap_content"
                     android:text="↗"
                     android:textSize="20sp"
-                    android:textColor="#0C8F48"/>
+                    android:textColor="@color/verde_primario"/>
 
                 <TextView
                     android:id="@+id/tvDistancia"
@@ -94,14 +95,14 @@
                     android:text="1.4"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="#1C1C1C"/>
+                    android:textColor="@color/texto_principal"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="KM"
                     android:textSize="10sp"
-                    android:textColor="#888888"/>
+                    android:textColor="@color/texto_secundario"/>
 
             </LinearLayout>
 
@@ -125,14 +126,14 @@
                     android:text="Moderada"
                     android:textSize="13sp"
                     android:textStyle="bold"
-                    android:textColor="#1C1C1C"/>
+                    android:textColor="@color/texto_principal"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="DIFICULTAD"
                     android:textSize="10sp"
-                    android:textColor="#888888"/>
+                    android:textColor="@color/texto_secundario"/>
 
             </LinearLayout>
 
@@ -156,14 +157,14 @@
                     android:text="0.0"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="#1C1C1C"/>
+                    android:textColor="@color/texto_principal"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="RATING"
                     android:textSize="10sp"
-                    android:textColor="#888888"/>
+                    android:textColor="@color/texto_secundario"/>
 
             </LinearLayout>
 
@@ -187,14 +188,14 @@
                     android:text="10m"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="#1C1C1C"/>
+                    android:textColor="@color/texto_principal"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ELEVACIÓN"
                     android:textSize="10sp"
-                    android:textColor="#888888"/>
+                    android:textColor="@color/texto_secundario"/>
 
             </LinearLayout>
 
@@ -218,14 +219,14 @@
                     android:text="25"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="#1C1C1C"/>
+                    android:textColor="@color/texto_principal"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="MIN EST."
                     android:textSize="10sp"
-                    android:textColor="#888888"/>
+                    android:textColor="@color/texto_secundario"/>
 
             </LinearLayout>
 
@@ -243,8 +244,8 @@
             android:paddingBottom="6dp"
             android:text="📋 Nivel: Moderada"
             android:textSize="13sp"
-            android:textColor="#5D4037"
-            android:background="#FFF9C4" />
+            android:textColor="@color/amarillo_texto"
+            android:background="@drawable/bg_badge_amarillo" />
 
         <!-- DESCRIPCIÓN -->
         <LinearLayout
@@ -252,7 +253,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_margin="16dp"
-            android:background="#FFFFFF"
+            android:background="@drawable/bg_card"
             android:padding="16dp">
 
             <TextView
@@ -261,7 +262,7 @@
                 android:text="Descripción"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#1C1C1C"
+                android:textColor="@color/texto_principal"
                 android:layout_marginBottom="6dp"/>
 
             <TextView
@@ -270,7 +271,7 @@
                 android:layout_height="wrap_content"
                 android:text="Sin descripción."
                 android:textSize="14sp"
-                android:textColor="#555555"
+                android:textColor="@color/texto_secundario"
                 android:lineSpacingExtra="4dp"/>
 
         </LinearLayout>
@@ -281,7 +282,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_margin="16dp"
-            android:background="#FFFFFF"
+            android:background="@drawable/bg_card"
             android:padding="16dp">
 
             <TextView
@@ -290,7 +291,7 @@
                 android:text="Califica y deja tu reseña"
                 android:textSize="15sp"
                 android:textStyle="bold"
-                android:textColor="#1C1C1C"
+                android:textColor="@color/texto_principal"
                 android:layout_marginBottom="10dp"/>
 
             <!-- Estrellas -->
@@ -361,7 +362,7 @@
                 android:minLines="3"
                 android:maxLines="5"
                 android:inputType="textMultiLine"
-                android:background="#F5F5F5"
+                android:background="@drawable/bg_input"
                 android:padding="10dp"
                 android:layout_marginBottom="10dp"/>
 
@@ -371,7 +372,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:scaleType="centerCrop"
-                android:background="#EEEEEE"
+                android:background="@color/gris_campo"
                 android:visibility="gone"
                 android:layout_marginBottom="8dp"/>
 
@@ -382,7 +383,7 @@
                 android:layout_height="wrap_content"
                 android:text="Sin foto (opcional)"
                 android:textSize="12sp"
-                android:textColor="#888888"
+                android:textColor="@color/texto_secundario"
                 android:layout_marginBottom="8dp"/>
 
             <!-- Botón elegir foto -->
@@ -392,8 +393,8 @@
                 android:layout_height="40dp"
                 android:text="📷 Agregar foto a la reseña"
                 android:textSize="13sp"
-                android:backgroundTint="#E3F2FD"
-                android:textColor="#1565C0"
+                android:backgroundTint="@color/verde_claro"
+                android:textColor="@color/verde_primario"
                 android:layout_marginBottom="10dp"/>
 
             <!-- Botón enviar reseña -->
@@ -403,7 +404,7 @@
                 android:layout_height="46dp"
                 android:text="✅ Publicar reseña"
                 android:textSize="14sp"
-                android:backgroundTint="#0C8F48"
+                android:backgroundTint="@color/verde_primario"
                 android:textColor="#FFFFFF"/>
 
         </LinearLayout>
@@ -424,7 +425,7 @@
                 android:text="💬 Ver Reseñas (0)"
                 android:textSize="14sp"
                 android:backgroundTint="#FFFFFF"
-                android:textColor="#333333"/>
+                android:textColor="@color/negro_suave"/>
 
         </LinearLayout>
 
@@ -443,8 +444,8 @@
                 android:layout_height="52dp"
                 android:text="▶  Iniciar esta ruta"
                 android:textSize="16sp"
-                android:backgroundTint="#CDDC39"
-                android:textColor="#1C1C1C"
+                android:backgroundTint="@color/amarillo"
+                android:textColor="@color/texto_principal"
                 android:textStyle="bold"
                 android:layout_marginBottom="10dp"/>
 
@@ -455,7 +456,7 @@
                 android:text="🤍 Guardar en Favoritos"
                 android:textSize="15sp"
                 android:backgroundTint="#FFFFFF"
-                android:textColor="#0C8F48"
+                android:textColor="@color/verde_primario"
                 android:layout_marginBottom="10dp"/>
 
         </LinearLayout>

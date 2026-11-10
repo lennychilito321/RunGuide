@@ -2,7 +2,7 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1A1A1A">
+    android:background="@color/negro_carbon">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -35,7 +35,7 @@
                 android:layout_height="36dp"
                 android:text="← Volver"
                 android:textSize="12sp"
-                android:backgroundTint="#333333"
+                android:backgroundTint="@color/negro_suave"
                 android:textColor="#FFFFFF"/>
 
         </LinearLayout>
@@ -53,7 +53,7 @@
                 android:layout_height="100dp"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="#2A2A2A"
+                android:background="@drawable/bg_card_dark"
                 android:layout_marginEnd="8dp">
 
                 <TextView
@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:text="KM TOTALES"
                     android:textSize="10sp"
-                    android:textColor="#AAAAAA"/>
+                    android:textColor="#9AA3A0"/>
 
             </LinearLayout>
 
@@ -86,7 +86,7 @@
                 android:layout_height="100dp"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="#2A2A2A"
+                android:background="@drawable/bg_card_dark"
                 android:layout_marginStart="8dp">
 
                 <TextView
@@ -109,7 +109,7 @@
                     android:layout_height="wrap_content"
                     android:text="ACTIVIDADES"
                     android:textSize="10sp"
-                    android:textColor="#AAAAAA"/>
+                    android:textColor="#9AA3A0"/>
 
             </LinearLayout>
 
@@ -126,7 +126,7 @@
                 android:layout_height="100dp"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="#2A2A2A"
+                android:background="@drawable/bg_card_dark"
                 android:layout_marginEnd="8dp">
 
                 <TextView
@@ -149,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:text="RITMO PROM."
                     android:textSize="10sp"
-                    android:textColor="#AAAAAA"/>
+                    android:textColor="#9AA3A0"/>
 
             </LinearLayout>
 
@@ -159,7 +159,7 @@
                 android:layout_height="100dp"
                 android:orientation="vertical"
                 android:gravity="center"
-                android:background="#2A2A2A"
+                android:background="@drawable/bg_card_dark"
                 android:layout_marginStart="8dp">
 
                 <TextView
@@ -182,7 +182,7 @@
                     android:layout_height="wrap_content"
                     android:text="MEJOR TIEMPO"
                     android:textSize="10sp"
-                    android:textColor="#AAAAAA"/>
+                    android:textColor="#9AA3A0"/>
 
             </LinearLayout>
 

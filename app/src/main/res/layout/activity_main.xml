@@ -1,131 +1,166 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="24dp"
-    android:gravity="center_horizontal"
-    android:background="#E8F0EC">
-
-    <!-- LOGO -->
-
-
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center"
-
-        android:src="@drawable/logorun"
-        android:layout_marginTop="50dp"/>
-
-    <!-- TITULO -->
-
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="runguide"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:textColor="#1C1C1C"
-        android:layout_marginTop="10dp" />
-
-    <!-- SUBTITULO -->
-
-    <TextView
-        android:id="@+id/tvSubtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Encuentra senderos cerca de ti"
-        android:textColor="#6B6B6B"
-        android:textSize="14sp"
-        android:layout_marginBottom="30dp" />
-
-
-
-    <!-- TABS LOGIN / REGISTER -->
+    android:background="@color/fondo_app"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#EEEEEE"
-        android:padding="4dp">
+        android:orientation="vertical">
 
-
-
-        <Button
-            android:id="@+id/btnRegisterTab"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+        <!-- CABECERA OSCURA CON LOGO (el logo es vectorial y transparente) -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Registrarse"
-            android:backgroundTint="#EEEEEE" />
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:background="@drawable/bg_header"
+            android:paddingTop="64dp"
+            android:paddingBottom="36dp">
+
+            <ImageView
+                android:layout_width="84dp"
+                android:layout_height="84dp"
+                android:src="@drawable/logo_app"
+                android:contentDescription="RunGuide" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="RunGuide"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="14dp" />
+
+            <TextView
+                android:id="@+id/tvSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Encuentra senderos cerca de ti"
+                android:textColor="#BFD3C8"
+                android:textSize="14sp"
+                android:layout_marginTop="2dp" />
+
+        </LinearLayout>
+
+        <!-- FORMULARIO -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Correo electrónico"
+                android:textSize="13sp"
+                android:textColor="@color/texto_secundario"
+                android:layout_marginBottom="6dp" />
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="tu@correo.com"
+                android:inputType="textEmailAddress"
+                android:background="@drawable/bg_input"
+                android:padding="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contraseña"
+                android:textSize="13sp"
+                android:textColor="@color/texto_secundario"
+                android:layout_marginTop="14dp"
+                android:layout_marginBottom="6dp" />
+
+            <EditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="••••••••"
+                android:inputType="textPassword"
+                android:background="@drawable/bg_input"
+                android:padding="14dp" />
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:text="Iniciar sesión"
+                android:layout_marginTop="22dp"
+                android:backgroundTint="@color/verde_primario"
+                android:textColor="#FFFFFF" />
+
+            <!-- Separador suave -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="18dp">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="1dp"
+                    android:background="@color/borde" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="o continúa con"
+                    android:textSize="12sp"
+                    android:textColor="@color/texto_secundario"
+                    android:paddingStart="12dp"
+                    android:paddingEnd="12dp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="1dp"
+                    android:background="@color/borde" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnGoogle"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:text="Continuar con Google"
+                android:textColor="@color/texto_principal"
+                app:icon="@drawable/ic_google"
+                app:iconTint="@null"
+                app:iconGravity="textStart"
+                app:strokeColor="@color/borde"
+                app:cornerRadius="12dp" />
+
+            <Button
+                android:id="@+id/btnRegisterTab"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="¿No tienes cuenta? Regístrate"
+                android:textColor="@color/verde_primario"
+                android:layout_marginTop="8dp" />
+
+            <Button
+                android:id="@+id/btnInvitado"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Entrar como invitado"
+                android:textColor="@color/texto_secundario" />
+
+        </LinearLayout>
 
     </LinearLayout>
-
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Correo electrónico"
-        android:layout_marginTop="20dp"/>
-
-    <EditText
-        android:id="@+id/etEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="tu@correo.com"/>
-
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Contraseña"
-        android:layout_marginTop="10dp"/>
-
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="********"
-        android:inputType="textPassword"/>
-
-
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Iniciar Sesión"
-        android:layout_marginTop="20dp"
-        android:backgroundTint="#0C8F48"
-        android:textColor="#FFFFFF"/>
-
-
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="o"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_gravity="center"/>
-
-
-    <!-- BOTON INVITADO -->
-
-    <Button
-        android:id="@+id/btnInvitado"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Entrar como invitado"
-        android:backgroundTint="#0C8F48"/>
-
-
-
-</LinearLayout>
+</ScrollView>

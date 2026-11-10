@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- Paleta RunGuide -->
+    <color name="verde_primario">#0C8F48</color>
+    <color name="verde_oscuro">#0A6B37</color>
+    <color name="verde_claro">#E6F4EC</color>
+    <color name="fondo_app">#F4F7F5</color>
+    <color name="texto_principal">#1C1C1C</color>
+    <color name="texto_secundario">#6B7280</color>
+    <color name="estrella">#FFB300</color>
+    <color name="corazon">#E53950</color>
+</resources>

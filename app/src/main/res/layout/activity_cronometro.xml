@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#1A1A1A">
+
+    <!-- HEADER -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🏃 ACTIVIDAD EN CURSO"
+            android:textSize="13sp"
+            android:textColor="#AAAAAA"
+            android:letterSpacing="0.1"/>
+
+        <TextView
+            android:id="@+id/tvNombreSendero"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="📍 Sendero"
+            android:textSize="16sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="4dp"/>
+
+    </LinearLayout>
+
+    <!-- CRONÓMETRO GRANDE -->
+    <TextView
+        android:id="@+id/tvCronometro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="00:00"
+        android:textSize="72sp"
+        android:textStyle="bold"
+        android:textColor="#CDDC39"
+        android:gravity="center"
+        android:fontFamily="monospace"
+        android:layout_marginTop="10dp"/>
+
+    <!-- ESTADO -->
+    <TextView
+        android:id="@+id/tvEstado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🟢 Corriendo..."
+        android:textSize="14sp"
+        android:textColor="#AAAAAA"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="30dp"/>
+
+    <!-- BOTONES PAUSAR / FINALIZAR -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="40dp">
+
+        <Button
+            android:id="@+id/btnPausar"
+            android:layout_width="140dp"
+            android:layout_height="52dp"
+            android:text="⏸ Pausar"
+            android:textSize="15sp"
+            android:backgroundTint="#333333"
+            android:textColor="#FFFFFF"
+            android:layout_marginEnd="16dp"/>
+
+        <Button
+            android:id="@+id/btnFinalizar"
+            android:layout_width="140dp"
+            android:layout_height="52dp"
+            android:text="⏹ Finalizar"
+            android:textSize="15sp"
+            android:backgroundTint="#D32F2F"
+            android:textColor="#FFFFFF"/>
+
+    </LinearLayout>
+
+    <!-- MÉTRICAS: km y ritmo -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- km recorridos -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#2A2A2A"
+            android:padding="16dp"
+            android:layout_marginEnd="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🗺"
+                android:textSize="22sp"/>
+
+            <TextView
+                android:id="@+id/tvKm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0.00"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="KM RECORRIDOS"
+                android:textSize="10sp"
+                android:textColor="#AAAAAA"/>
+
+        </LinearLayout>
+
+        <!-- Ritmo -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="#2A2A2A"
+            android:padding="16dp"
+            android:layout_marginStart="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⚡"
+                android:textSize="22sp"/>
+
+            <TextView
+                android:id="@+id/tvRitmo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="—"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MIN/KM"
+                android:textSize="10sp"
+                android:textColor="#AAAAAA"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

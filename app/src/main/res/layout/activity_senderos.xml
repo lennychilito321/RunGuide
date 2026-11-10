@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/fondo_app">
+
+    <!-- HEADER -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_header"
+        android:paddingTop="44dp"
+        android:paddingBottom="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="RunGuide"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Encuentra tu próxima ruta"
+            android:textSize="13sp"
+            android:textColor="#CFEBDB"
+            android:layout_marginBottom="12dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <Button
+                android:id="@+id/btnFavoritos"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="♥ Favoritos"
+                android:textSize="12sp"
+                android:textAllCaps="false"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/corazon"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btnDashboard"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Mi perfil"
+                android:textSize="12sp"
+                android:textAllCaps="false"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/verde_primario"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btnLogout"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="Salir"
+                android:textSize="12sp"
+                android:textAllCaps="false"
+                android:backgroundTint="#33FFFFFF"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
+
+        <!-- Herramientas del administrador -->
+        <LinearLayout
+            android:id="@+id/rowAdmin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp"
+            android:visibility="gone">
+
+            <Button
+                android:id="@+id/btnNuevoSendero"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="＋ Nuevo sendero"
+                android:textSize="12sp"
+                android:textAllCaps="false"
+                android:backgroundTint="#FFB300"
+                android:textColor="#1C1C1C"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btnUsuarios"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:text="👥 Usuarios"
+                android:textSize="12sp"
+                android:textAllCaps="false"
+                android:backgroundTint="#FFFFFF"
+                android:textColor="@color/verde_oscuro" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!-- FILTROS DIFICULTAD -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:paddingTop="12dp">
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipsDificultad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            app:singleSelection="true"
+            app:selectionRequired="true"
+            app:singleLine="true">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipTodas"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Todos"
+                android:checked="true" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipFacil"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fácil" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipModerada"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Moderado" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipDificil"
+                style="@style/Widget.Material3.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Difícil" />
+
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+
+    <!-- CONTADOR -->
+    <TextView
+        android:id="@+id/tvContador"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rutas disponibles (0)"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="@color/texto_principal"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="12dp"
+        android:paddingBottom="4dp" />
+
+    <!-- ESTADO VACÍO -->
+    <LinearLayout
+        android:id="@+id/estadoVacio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="32dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvVacio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sin resultados"
+            android:textSize="16sp"
+            android:textColor="@color/texto_secundario" />
+
+        <Button
+            android:id="@+id/btnLimpiarFiltro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Limpiar filtro"
+            android:textAllCaps="false"
+            android:backgroundTint="@color/verde_primario"
+            android:textColor="#FFFFFF"
+            android:layout_marginTop="12dp" />
+
+    </LinearLayout>
+
+    <!-- LISTA -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerSenderos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        android:layoutAnimation="@anim/layout_entrada" />
+
+</LinearLayout>

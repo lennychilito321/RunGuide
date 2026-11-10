@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "27212644526",
+    "firebase_url": "https://runner-app-f6214-default-rtdb.firebaseio.com",
+    "project_id": "runner-app-f6214",
+    "storage_bucket": "runner-app-f6214.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:27212644526:android:daf3bc808b1172f29ced3f",
+        "android_client_info": {
+          "package_name": "com.lennychilito.runguide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "27212644526-7btajsv5ecghund4aubanm3nq1cpoh97.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8jqcnCKBr2BY7IanHWS5dJC_C4_V-UFM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "27212644526-7btajsv5ecghund4aubanm3nq1cpoh97.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

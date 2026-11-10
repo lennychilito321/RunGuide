@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="16dp"
+    android:layout_marginEnd="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardCornerRadius="22dp"
+    app:cardElevation="4dp"
+    app:strokeWidth="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Imagen + distintivo de dificultad + corazón -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="180dp">
+
+            <ImageView
+                android:id="@+id/imgSendero"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/montana" />
+
+            <TextView
+                android:id="@+id/tvDificultad"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|end"
+                android:layout_margin="12dp"
+                android:paddingStart="12dp"
+                android:paddingEnd="12dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:text="Moderada"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:textColor="#5D4037"
+                android:background="@drawable/bg_badge" />
+
+            <!-- Menú ⋮ (solo admin): editar, reseñas, eliminar -->
+            <TextView
+                android:id="@+id/btnMenuAdmin"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="top|start"
+                android:layout_margin="12dp"
+                android:gravity="center"
+                android:text="⋮"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/texto_principal"
+                android:background="@drawable/bg_circulo"
+                android:elevation="2dp"
+                android:visibility="gone" />
+
+            <!-- Corazón para retirar de favoritos (solo en Favoritos) -->
+            <TextView
+                android:id="@+id/tvCorazon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="top|start"
+                android:layout_margin="12dp"
+                android:gravity="center"
+                android:text="♥"
+                android:textSize="20sp"
+                android:textColor="@color/corazon"
+                android:background="@drawable/bg_circulo"
+                android:elevation="2dp"
+                android:visibility="gone" />
+
+        </FrameLayout>
+
+        <!-- Contenido inferior -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvNombreSendero"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nombre del sendero"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/texto_principal" />
+
+            <TextView
+                android:id="@+id/tvUbicacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📍 Tierra"
+                android:textSize="13sp"
+                android:textColor="@color/texto_secundario"
+                android:layout_marginTop="2dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:id="@+id/tvRating"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="★ 0.0"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/estrella" />
+
+                <TextView
+                    android:id="@+id/tvDistancia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1.4 km"
+                    android:textSize="14sp"
+                    android:textColor="@color/texto_secundario" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnVerRuta"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="Ver ruta"
+                android:textSize="14sp"
+                android:textAllCaps="false"
+                android:backgroundTint="@color/verde_primario"
+                android:textColor="#FFFFFF"
+                android:layout_marginTop="12dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

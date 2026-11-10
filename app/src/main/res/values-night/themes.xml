@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- La app usa un solo tema claro: sus pantallas definen colores propios. -->
+    <style name="Base.Theme.RunGuide" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/verde_primario</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:colorBackground">@color/fondo_app</item>
+        <item name="android:statusBarColor">@color/verde_primario</item>
+    </style>
+</resources>

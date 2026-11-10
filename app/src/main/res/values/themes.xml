@@ -1,0 +1,25 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.RunGuide" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/verde_primario</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/verde_claro</item>
+        <item name="colorOnPrimaryContainer">@color/verde_oscuro</item>
+        <item name="android:colorBackground">@color/fondo_app</item>
+        <item name="android:statusBarColor">@color/verde_primario</item>
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.RunGuide.Small</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.RunGuide.Medium</item>
+    </style>
+
+    <style name="Theme.RunGuide" parent="Base.Theme.RunGuide" />
+
+    <!-- Esquinas redondeadas suaves para botones, chips y tarjetas -->
+    <style name="ShapeAppearance.RunGuide.Small" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">14dp</item>
+    </style>
+
+    <style name="ShapeAppearance.RunGuide.Medium" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">22dp</item>
+    </style>
+</resources>

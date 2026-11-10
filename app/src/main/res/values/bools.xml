@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Iconos de la barra de estado oscuros sobre la imagen clara de la pantalla de carga -->
+    <bool name="barra_clara">true</bool>
+</resources>

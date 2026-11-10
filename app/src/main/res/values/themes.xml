@@ -25,6 +25,14 @@
 
     <style name="Theme.RunGuide" parent="Base.Theme.RunGuide" />
 
+    <!-- Pantalla de carga: la imagen de RunGuide a pantalla completa (claro y oscuro) -->
+    <style name="Theme.RunGuide.Splash" parent="Theme.RunGuide">
+        <item name="android:windowBackground">@drawable/fondo_splash</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">@bool/barra_clara</item>
+    </style>
+
     <!-- Botones planos, esquinas suaves, sin MAYÚSCULAS -->
     <style name="Widget.RunGuide.Button" parent="Widget.Material3.Button">
         <item name="cornerRadius">12dp</item>

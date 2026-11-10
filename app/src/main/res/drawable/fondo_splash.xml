@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla de carga: la imagen a pantalla completa con un velo que en modo oscuro la oscurece -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/splash_fondo" />
+    <item>
+        <bitmap
+            android:src="@drawable/fondo_carga"
+            android:gravity="fill" />
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/velo_carga" />
+        </shape>
+    </item>
+</layer-list>

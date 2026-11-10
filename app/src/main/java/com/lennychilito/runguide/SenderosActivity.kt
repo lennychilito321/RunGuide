@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
@@ -28,6 +29,9 @@ class SenderosActivity : AppCompatActivity() {
     /** Clave de dificultad seleccionada ("" = todas). */
     private var filtroActual = ""
 
+    private var esAdmin = false
+    private var sembrando = false   // evita cargar los predeterminados dos veces seguidas
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -36,7 +40,7 @@ class SenderosActivity : AppCompatActivity() {
 
         val rol = intent.getStringExtra("ROL") ?: "invitado"
         val esInvitado = rol == "invitado"
-        val esAdmin = rol == "admin" && Rtdb.esAdmin()
+        esAdmin = rol == "admin" && Rtdb.esAdmin()
 
         binding.btnAjustes.setOnClickListener {
             startActivity(Intent(this, AjustesActivity::class.java))
@@ -71,6 +75,7 @@ class SenderosActivity : AppCompatActivity() {
             binding.btnUsuarios.setOnClickListener {
                 startActivity(Intent(this, UsuariosActivity::class.java))
             }
+            binding.btnPredeterminados.setOnClickListener { confirmarPredeterminados() }
         }
 
         binding.recyclerSenderos.layoutManager = LinearLayoutManager(this)
@@ -109,6 +114,12 @@ class SenderosActivity : AppCompatActivity() {
                 listaCompletaSenderos.clear()
                 snapshot.children.mapNotNullTo(listaCompletaSenderos) { it.toSendero() }
                 aplicarFiltro()
+
+                // Catálogo vacío: el administrador carga los senderos que vienen con el sistema
+                if (esAdmin && !sembrando && snapshot.childrenCount == 0L) {
+                    sembrando = true
+                    SenderosPorDefecto.cargar()
+                }
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -119,6 +130,24 @@ class SenderosActivity : AppCompatActivity() {
                 ).show()
             }
         })
+    }
+
+    /** Restaura El Morro, La Torre y San Bernardino con sus datos originales. */
+    private fun confirmarPredeterminados() {
+        AlertDialog.Builder(this)
+            .setTitle(getString(R.string.dlg_predeterminados_t))
+            .setMessage(getString(R.string.dlg_predeterminados_m))
+            .setNegativeButton(getString(R.string.cancelar), null)
+            .setPositiveButton(getString(R.string.cargar)) { _, _ ->
+                SenderosPorDefecto.cargar { ok ->
+                    Toast.makeText(
+                        this,
+                        getString(if (ok) R.string.predeterminados_ok else R.string.err_predeterminados),
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+            .show()
     }
 
     /** Muestra los senderos de la dificultad elegida y actualiza el contador. */

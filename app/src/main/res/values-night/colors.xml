@@ -19,4 +19,9 @@
     <color name="amarillo_texto">#EBCB70</color>
 
     <color name="peligro">#D8675D</color>
+
+    <!-- Pantalla de carga: la imagen se oscurece -->
+    <color name="splash_fondo">#101614</color>
+    <color name="velo_carga">#B3101614</color>
+    <color name="texto_carga">#FFFFFF</color>
 </resources>

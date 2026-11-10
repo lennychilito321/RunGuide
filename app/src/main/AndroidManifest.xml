@@ -73,9 +73,16 @@
             android:name=".DashboardActivity"
             android:exported="false" />
 
+        <!-- Inicio de sesión (se abre desde la pantalla de carga) -->
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="false" />
+
+        <!-- Pantalla de carga: es la que abre el ícono de la app -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.RunGuide.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

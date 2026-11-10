@@ -189,6 +189,14 @@
     <string name="login_guardar_t">Inicia sesión para guardar</string>
     <string name="login_guardar_m">Necesitas una cuenta para guardar senderos en tus favoritos.</string>
 
+    <!-- ========== Senderos predeterminados ========== -->
+    <string name="predeterminados">⭐ Predeterminados</string>
+    <string name="dlg_predeterminados_t">Senderos predeterminados</string>
+    <string name="dlg_predeterminados_m">Se cargarán El Morro de Tulcán, La Torre y la Cascada San Bernardino con su ubicación en el mapa. Si ya existen, se restauran sus datos originales (la calificación se conserva).</string>
+    <string name="cargar">Cargar</string>
+    <string name="predeterminados_ok">Senderos predeterminados cargados</string>
+    <string name="err_predeterminados">No se pudieron cargar los senderos</string>
+
     <!-- ========== Mapa ========== -->
     <string name="ubicacion_mapa_titulo">📍 Ubicación del sendero</string>
     <string name="abrir_en_maps">Abrir en mapas</string>

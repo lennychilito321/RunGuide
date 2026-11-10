@@ -54,6 +54,7 @@ class SenderoAdapter(
                 val bmp = android.graphics.BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
                 b.imgSendero.setImageBitmap(bmp)
             }
+            s.imagenLocal.isNotEmpty() -> b.imgSendero.setImageResource(imagenLocalRes(s.imagenLocal))
             s.imagenUrl.isNotEmpty() -> {
                 Glide.with(holder.itemView.context)
                     .load(s.imagenUrl)

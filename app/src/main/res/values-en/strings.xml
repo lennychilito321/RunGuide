@@ -189,6 +189,14 @@
     <string name="login_guardar_t">Sign in to save</string>
     <string name="login_guardar_m">You need an account to save trails to your favorites.</string>
 
+    <!-- ========== Default trails ========== -->
+    <string name="predeterminados">⭐ Defaults</string>
+    <string name="dlg_predeterminados_t">Default trails</string>
+    <string name="dlg_predeterminados_m">El Morro de Tulcán, La Torre and Cascada San Bernardino will be loaded with their map location. If they already exist, their original data is restored (the rating is kept).</string>
+    <string name="cargar">Load</string>
+    <string name="predeterminados_ok">Default trails loaded</string>
+    <string name="err_predeterminados">Couldn\'t load the trails</string>
+
     <!-- ========== Map ========== -->
     <string name="ubicacion_mapa_titulo">📍 Trail location</string>
     <string name="abrir_en_maps">Open in maps</string>

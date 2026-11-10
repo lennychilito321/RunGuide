@@ -22,6 +22,7 @@ fun DataSnapshot.toSendero(): Sendero? {
         rating = child("rating").value?.toString()?.toDoubleOrNull() ?: 0.0,
         imagenUrl = child("imagenUrl").value?.toString().orEmpty(),
         imagenBase64 = child("imagenBase64").value?.toString().orEmpty(),
+        imagenLocal = child("imagenLocal").value?.toString().orEmpty(),
         descripcion = child("descripcion").value?.toString().orEmpty(),
         elevacion = child("elevacion").value?.toString() ?: "0m",
         tipoTerreno = child("tipoTerreno").value?.toString().orEmpty(),
@@ -29,6 +30,13 @@ fun DataSnapshot.toSendero(): Sendero? {
         lat = child("lat").value?.toString()?.toDoubleOrNull(),
         lng = child("lng").value?.toString()?.toDoubleOrNull()
     )
+}
+
+/** Foto incluida en la app para los senderos predeterminados; si no hay, la de montaña. */
+fun imagenLocalRes(clave: String): Int = when (clave) {
+    "morro" -> R.drawable.sendero_morro
+    "san_bernardino" -> R.drawable.sendero_san_bernardino
+    else -> R.drawable.montana
 }
 
 /** Abre el detalle con las mismas claves que lee DetalleSenderoActivity. */
@@ -41,6 +49,7 @@ fun Context.abrirDetalle(s: Sendero) {
         putExtra("RATING", s.rating.toString())
         putExtra("IMAGEN_URL", s.imagenUrl)
         putExtra("IMAGEN_BASE64", s.imagenBase64)
+        putExtra("IMAGEN_LOCAL", s.imagenLocal)
         putExtra("DESCRIPCION", s.descripcion)
         putExtra("ELEVACION", s.elevacion)
         putExtra("TIPO_TERRENO", s.tipoTerreno.ifEmpty { s.ubicacion })

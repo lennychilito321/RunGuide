@@ -1,0 +1,12 @@
+<resources>
+    <!-- Android 12+: el splash del sistema usa el mismo color de fondo y un icono transparente,
+         así que lo único que se ve es la imagen de la pantalla de carga. -->
+    <style name="Theme.RunGuide.Splash" parent="Theme.RunGuide">
+        <item name="android:windowBackground">@drawable/fondo_splash</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">@bool/barra_clara</item>
+        <item name="android:windowSplashScreenBackground">@color/splash_fondo</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/ic_splash_vacio</item>
+    </style>
+</resources>

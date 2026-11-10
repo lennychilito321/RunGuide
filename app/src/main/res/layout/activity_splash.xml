@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Pantalla de carga: el fondo (imagen) lo pone el tema de la actividad -->
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent">
+
+    <TextView
+        android:id="@+id/tvSplashNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/runguide"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textColor="@color/texto_carga"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.62" />
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/progresoSplash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:indeterminate="true"
+        app:indicatorSize="32dp"
+        app:trackThickness="3dp"
+        app:indicatorColor="@color/verde_primario"
+        app:layout_constraintTop_toBottomOf="@id/tvSplashNombre"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

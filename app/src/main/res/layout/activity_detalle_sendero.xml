@@ -276,7 +276,7 @@
 
         </LinearLayout>
 
-        <!-- UBICACIÓN EN GOOGLE MAPS (solo si el sendero tiene coordenadas) -->
+        <!-- UBICACIÓN EN EL MAPA (siempre visible, debajo de la descripción) -->
         <LinearLayout
             android:id="@+id/cardMapa"
             android:layout_width="match_parent"
@@ -286,8 +286,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/bg_card"
-            android:padding="16dp"
-            android:visibility="gone">
+            android:padding="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -300,8 +299,9 @@
 
             <!-- Mapa de vista previa: no se mueve; al tocarlo abre el resumen de la ruta -->
             <FrameLayout
+                android:id="@+id/contMapa"
                 android:layout_width="match_parent"
-                android:layout_height="190dp"
+                android:layout_height="220dp"
                 android:background="@color/gris_campo">
 
                 <org.osmdroid.views.MapView
@@ -333,7 +333,18 @@
                     android:background="@drawable/bg_badge" />
             </FrameLayout>
 
+            <!-- Se muestra en lugar del mapa cuando el sendero aún no tiene ubicación -->
+            <TextView
+                android:id="@+id/tvMapaSinUbicacion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/sin_ubicacion_sendero"
+                android:textSize="13sp"
+                android:textColor="@color/texto_secundario"
+                android:visibility="gone" />
+
             <LinearLayout
+                android:id="@+id/filaBotonesMapa"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"

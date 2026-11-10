@@ -58,6 +58,7 @@ class DetalleSenderoActivity : AppCompatActivity() {
         val rating         = intent.getStringExtra("RATING") ?: "0.0"
         val imagenUrl      = intent.getStringExtra("IMAGEN_URL") ?: ""
         val imagenBase64   = intent.getStringExtra("IMAGEN_BASE64") ?: ""
+        val imagenLocal    = intent.getStringExtra("IMAGEN_LOCAL") ?: ""
         val descripcion    = intent.getStringExtra("DESCRIPCION") ?: ""
         val elevacion      = intent.getStringExtra("ELEVACION") ?: "0m"
         val tipoTerreno    = intent.getStringExtra("TIPO_TERRENO") ?: ""
@@ -70,6 +71,7 @@ class DetalleSenderoActivity : AppCompatActivity() {
                 val bmp = android.graphics.BitmapFactory.decodeByteArray(bytes, 0, bytes.size)
                 binding.imgPortada.setImageBitmap(bmp)
             }
+            imagenLocal.isNotEmpty() -> binding.imgPortada.setImageResource(imagenLocalRes(imagenLocal))
             imagenUrl.isNotEmpty() -> Glide.with(this).load(imagenUrl).into(binding.imgPortada)
             else -> binding.imgPortada.setImageResource(R.drawable.montana)
         }
@@ -91,7 +93,14 @@ class DetalleSenderoActivity : AppCompatActivity() {
         // Mapa (solo si el admin le puso ubicación al sendero)
         val lat = intent.getDoubleExtra("LAT", Double.NaN)
         val lng = intent.getDoubleExtra("LNG", Double.NaN)
-        if (!lat.isNaN() && !lng.isNaN()) configurarMapa(nombre, lat, lng)
+        if (!lat.isNaN() && !lng.isNaN()) {
+            configurarMapa(nombre, lat, lng)
+        } else {
+            // El recuadro se ve siempre; sin ubicación avisa en lugar de mostrar el mapa
+            binding.contMapa.visibility = android.view.View.GONE
+            binding.filaBotonesMapa.visibility = android.view.View.GONE
+            binding.tvMapaSinUbicacion.visibility = android.view.View.VISIBLE
+        }
 
         // Iniciar ruta
         binding.btnIniciarRuta.setOnClickListener {
@@ -132,8 +141,6 @@ class DetalleSenderoActivity : AppCompatActivity() {
 
     // ── MAPA ──────────────────────────────────────────────────────────────────
     private fun configurarMapa(nombre: String, lat: Double, lng: Double) {
-        binding.cardMapa.visibility = android.view.View.VISIBLE
-
         // Vista previa fija (OpenStreetMap): no se mueve, para no pelear con el scroll.
         // Al tocarla se abre el resumen de la ruta, donde se puede iniciar.
         val mapa = binding.mapaDetalle

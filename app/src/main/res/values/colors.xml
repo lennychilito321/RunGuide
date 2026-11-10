@@ -29,4 +29,9 @@
     <color name="estrella">#E3B341</color>
     <color name="corazon">#C85A6A</color>
     <color name="peligro">#B5483F</color>
+
+    <!-- Pantalla de carga -->
+    <color name="splash_fondo">#9CC6DD</color>
+    <color name="velo_carga">#00FFFFFF</color>
+    <color name="texto_carga">#1F3A2D</color>
 </resources>

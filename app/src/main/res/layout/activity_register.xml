@@ -24,12 +24,12 @@
                 android:layout_width="68dp"
                 android:layout_height="68dp"
                 android:src="@drawable/logo_app"
-                android:contentDescription="RunGuide" />
+                android:contentDescription="@string/runguide" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Crear cuenta"
+                android:text="@string/crear_cuenta"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"
@@ -38,7 +38,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Guarda tus rutas y favoritos"
+                android:text="@string/guarda_tus_rutas_y_favoritos"
                 android:textSize="13sp"
                 android:textColor="#BFD3C8" />
         </LinearLayout>
@@ -54,7 +54,7 @@
                 style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:text="Registrarse con Google"
+                android:text="@string/registrarse_con_google"
                 android:textColor="@color/texto_principal"
                 app:icon="@drawable/ic_google"
                 app:iconTint="@null"
@@ -79,7 +79,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="o con tu correo"
+                    android:text="@string/o_con_tu_correo"
                     android:textSize="12sp"
                     android:textColor="@color/texto_secundario"
                     android:paddingStart="12dp"
@@ -95,7 +95,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Correo electrónico"
+                android:text="@string/correo_electronico"
                 android:textSize="13sp"
                 android:textColor="@color/texto_secundario"
                 android:layout_marginBottom="6dp" />
@@ -104,7 +104,7 @@
                 android:id="@+id/etRegisterEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="tu@correo.com"
+                android:hint="@string/tu_correo_com"
                 android:inputType="textEmailAddress"
                 android:background="@drawable/bg_input"
                 android:padding="14dp" />
@@ -112,7 +112,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Contraseña"
+                android:text="@string/contrasena"
                 android:textSize="13sp"
                 android:textColor="@color/texto_secundario"
                 android:layout_marginTop="14dp"
@@ -122,7 +122,7 @@
                 android:id="@+id/etRegisterPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Mínimo 6 caracteres"
+                android:hint="@string/minimo_6_caracteres"
                 android:inputType="textPassword"
                 android:background="@drawable/bg_input"
                 android:padding="14dp" />
@@ -130,7 +130,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Confirmar contraseña"
+                android:text="@string/confirmar_contrasena"
                 android:textSize="13sp"
                 android:textColor="@color/texto_secundario"
                 android:layout_marginTop="14dp"
@@ -140,7 +140,7 @@
                 android:id="@+id/etRegisterConfirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Repite tu contraseña"
+                android:hint="@string/repite_tu_contrasena"
                 android:inputType="textPassword"
                 android:background="@drawable/bg_input"
                 android:padding="14dp" />
@@ -149,7 +149,7 @@
                 android:id="@+id/btnRegister"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:text="Crear cuenta"
+                android:text="@string/crear_cuenta"
                 android:layout_marginTop="24dp"
                 android:backgroundTint="@color/verde_primario"
                 android:textColor="#FFFFFF" />
@@ -159,7 +159,7 @@
                 style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:text="Ya tengo cuenta"
+                android:text="@string/ya_tengo_cuenta"
                 android:textColor="@color/texto_secundario"
                 android:layout_marginTop="6dp" />
 

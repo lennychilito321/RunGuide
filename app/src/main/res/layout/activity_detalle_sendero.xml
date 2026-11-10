@@ -37,7 +37,7 @@
                     android:id="@+id/tvNombre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Nombre del sendero"
+                    android:text="@string/nombre_del_sendero_2"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:textColor="#FFFFFF" />
@@ -46,7 +46,7 @@
                     android:id="@+id/tvTipoTerreno"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="📍 Tierra"
+                    android:text="@string/tierra"
                     android:textSize="14sp"
                     android:textColor="@color/gris_campo" />
 
@@ -56,7 +56,7 @@
                 android:id="@+id/btnVolver"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
-                android:text="← Volver"
+                android:text="@string/volver"
                 android:textSize="12sp"
                 android:layout_gravity="top|start"
                 android:layout_margin="10dp"
@@ -100,7 +100,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="KM"
+                    android:text="@string/km"
                     android:textSize="10sp"
                     android:textColor="@color/texto_secundario"/>
 
@@ -123,7 +123,7 @@
                     android:id="@+id/tvDificultad"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Moderada"
+                    android:text="@string/moderada"
                     android:textSize="13sp"
                     android:textStyle="bold"
                     android:textColor="@color/texto_principal"/>
@@ -131,7 +131,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="DIFICULTAD"
+                    android:text="@string/dificultad"
                     android:textSize="10sp"
                     android:textColor="@color/texto_secundario"/>
 
@@ -162,7 +162,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="RATING"
+                    android:text="@string/rating"
                     android:textSize="10sp"
                     android:textColor="@color/texto_secundario"/>
 
@@ -185,7 +185,7 @@
                     android:id="@+id/tvElevacion"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="10m"
+                    android:text="@string/elevacion_ejemplo"
                     android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/texto_principal"/>
@@ -193,7 +193,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ELEVACIÓN"
+                    android:text="@string/elevacion"
                     android:textSize="10sp"
                     android:textColor="@color/texto_secundario"/>
 
@@ -224,7 +224,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MIN EST."
+                    android:text="@string/min_est"
                     android:textSize="10sp"
                     android:textColor="@color/texto_secundario"/>
 
@@ -242,7 +242,7 @@
             android:paddingEnd="14dp"
             android:paddingTop="6dp"
             android:paddingBottom="6dp"
-            android:text="📋 Nivel: Moderada"
+            android:text="@string/nivel_moderada"
             android:textSize="13sp"
             android:textColor="@color/amarillo_texto"
             android:background="@drawable/bg_badge_amarillo" />
@@ -259,7 +259,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Descripción"
+                android:text="@string/descripcion"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/texto_principal"
@@ -269,7 +269,7 @@
                 android:id="@+id/tvDescripcion"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Sin descripción."
+                android:text="@string/sin_descripcion"
                 android:textSize="14sp"
                 android:textColor="@color/texto_secundario"
                 android:lineSpacingExtra="4dp"/>
@@ -288,7 +288,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Califica y deja tu reseña"
+                android:text="@string/califica_y_deja_tu_resena"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="@color/texto_principal"
@@ -358,7 +358,7 @@
                 android:id="@+id/etResena"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Escribe tu reseña aquí..."
+                android:hint="@string/escribe_tu_resena_aqui"
                 android:minLines="3"
                 android:maxLines="5"
                 android:inputType="textMultiLine"
@@ -381,7 +381,7 @@
                 android:id="@+id/tvFotoResenaEstado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sin foto (opcional)"
+                android:text="@string/sin_foto_opcional"
                 android:textSize="12sp"
                 android:textColor="@color/texto_secundario"
                 android:layout_marginBottom="8dp"/>
@@ -391,7 +391,7 @@
                 android:id="@+id/btnFotoResena"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:text="📷 Agregar foto a la reseña"
+                android:text="@string/agregar_foto_a_la_resena"
                 android:textSize="13sp"
                 android:backgroundTint="@color/verde_claro"
                 android:textColor="@color/verde_primario"
@@ -402,7 +402,7 @@
                 android:id="@+id/btnEnviarResena"
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
-                android:text="✅ Publicar reseña"
+                android:text="@string/publicar_resena"
                 android:textSize="14sp"
                 android:backgroundTint="@color/verde_primario"
                 android:textColor="#FFFFFF"/>
@@ -422,10 +422,10 @@
                 android:id="@+id/btnVerResenas"
                 android:layout_width="match_parent"
                 android:layout_height="46dp"
-                android:text="💬 Ver Reseñas (0)"
+                android:text="@string/ver_resenas_0"
                 android:textSize="14sp"
-                android:backgroundTint="#FFFFFF"
-                android:textColor="@color/negro_suave"/>
+                android:backgroundTint="@color/superficie"
+                android:textColor="@color/texto_principal"/>
 
         </LinearLayout>
 
@@ -442,7 +442,7 @@
                 android:id="@+id/btnIniciarRuta"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:text="▶  Iniciar esta ruta"
+                android:text="@string/iniciar_esta_ruta"
                 android:textSize="16sp"
                 android:backgroundTint="@color/amarillo"
                 android:textColor="@color/texto_principal"
@@ -453,9 +453,9 @@
                 android:id="@+id/btnFavorito"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:text="🤍 Guardar en Favoritos"
+                android:text="@string/guardar_en_favoritos"
                 android:textSize="15sp"
-                android:backgroundTint="#FFFFFF"
+                android:backgroundTint="@color/superficie"
                 android:textColor="@color/verde_primario"
                 android:layout_marginBottom="10dp"/>
 

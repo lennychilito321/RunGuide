@@ -25,7 +25,7 @@ class ResenasActivity : AppCompatActivity() {
         val senderoId = intent.getStringExtra("SENDERO_ID") ?: ""
         val nombre    = intent.getStringExtra("NOMBRE") ?: "Sendero"
 
-        binding.tvTituloResenas.text = "Reseñas — $nombre"
+        binding.tvTituloResenas.text = getString(R.string.resenas_titulo, nombre)
         binding.btnVolverResenas.setOnClickListener { finish() }
 
         // RecyclerView
@@ -56,24 +56,24 @@ class ResenasActivity : AppCompatActivity() {
                         listaResenas.add(0, r) // más recientes primero
                     }
                     adapter.notifyDataSetChanged()
-                    binding.tvContadorResenas.text = "${listaResenas.size} reseña(s)"
+                    binding.tvContadorResenas.text = getString(R.string.resenas_contador, listaResenas.size)
                 }
                 override fun onCancelled(e: DatabaseError) {
-                    Toast.makeText(this@ResenasActivity, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@ResenasActivity, getString(R.string.err_generico, e.message), Toast.LENGTH_SHORT).show()
                 }
             })
     }
 
     private fun confirmarEliminar(senderoId: String, r: Resena) {
         AlertDialog.Builder(this)
-            .setTitle("Eliminar reseña")
-            .setMessage("¿Eliminar la reseña de ${r.email.substringBefore("@")}? Se recalculará la calificación del sendero.")
-            .setNegativeButton("Cancelar", null)
-            .setPositiveButton("Eliminar") { _, _ ->
+            .setTitle(getString(R.string.dlg_eliminar_resena_t))
+            .setMessage(getString(R.string.dlg_eliminar_resena_m, r.email.substringBefore("@")))
+            .setNegativeButton(getString(R.string.cancelar), null)
+            .setPositiveButton(getString(R.string.eliminar)) { _, _ ->
                 Rtdb.eliminarResena(senderoId, r.id) { ok ->
                     Toast.makeText(
                         this,
-                        if (ok) "Reseña eliminada" else "No se pudo eliminar",
+                        getString(if (ok) R.string.resena_eliminada else R.string.no_se_pudo_eliminar),
                         Toast.LENGTH_SHORT
                     ).show()
                 }

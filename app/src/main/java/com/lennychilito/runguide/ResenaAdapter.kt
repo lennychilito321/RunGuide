@@ -59,7 +59,7 @@ class ResenaAdapter(
             menu.visibility = View.VISIBLE
             menu.setOnClickListener { anchor ->
                 PopupMenu(anchor.context, anchor).apply {
-                    this.menu.add(0, 1, 0, "🗑  Eliminar reseña")
+                    this.menu.add(0, 1, 0, anchor.context.getString(R.string.menu_eliminar_resena))
                     setOnMenuItemClickListener { onEliminar(r); true }
                     show()
                 }

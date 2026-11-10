@@ -38,6 +38,10 @@ class SenderosActivity : AppCompatActivity() {
         val esInvitado = rol == "invitado"
         val esAdmin = rol == "admin" && Rtdb.esAdmin()
 
+        binding.btnAjustes.setOnClickListener {
+            startActivity(Intent(this, AjustesActivity::class.java))
+        }
+
         binding.btnLogout.setOnClickListener {
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(this, MainActivity::class.java)
@@ -49,7 +53,7 @@ class SenderosActivity : AppCompatActivity() {
         if (esInvitado) {
             binding.btnDashboard.visibility = View.GONE
             binding.btnFavoritos.visibility = View.GONE
-            binding.btnLogout.text = "Ingresar"
+            binding.btnLogout.text = getString(R.string.ingresar)
         } else {
             binding.btnDashboard.setOnClickListener {
                 startActivity(Intent(this, DashboardActivity::class.java))
@@ -110,7 +114,7 @@ class SenderosActivity : AppCompatActivity() {
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(
                     this@SenderosActivity,
-                    "Error: ${error.message}",
+                    getString(R.string.err_generico, error.message),
                     Toast.LENGTH_LONG
                 ).show()
             }
@@ -130,7 +134,7 @@ class SenderosActivity : AppCompatActivity() {
         adapter.notifyDataSetChanged()
         binding.recyclerSenderos.scheduleLayoutAnimation()
 
-        binding.tvContador.text = "Rutas disponibles (${visibles.size})"
+        binding.tvContador.text = getString(R.string.rutas_disponibles, visibles.size)
 
         val vacio = visibles.isEmpty()
         binding.estadoVacio.visibility = if (vacio) View.VISIBLE else View.GONE
@@ -138,7 +142,7 @@ class SenderosActivity : AppCompatActivity() {
         if (vacio) {
             val hayFiltro = filtroActual.isNotEmpty()
             binding.tvVacio.text =
-                if (hayFiltro) "Sin resultados" else "Aún no hay senderos publicados"
+                if (hayFiltro) getString(R.string.sin_resultados) else getString(R.string.sin_senderos)
             binding.btnLimpiarFiltro.visibility = if (hayFiltro) View.VISIBLE else View.GONE
         }
     }

@@ -20,16 +20,20 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="RunGuide"
-            android:textSize="26sp"
-            android:textStyle="bold"
-            android:textColor="#FFFFFF" />
+            android:text="@string/runguide"
+            android:textAlignment="center"
+            android:layout_gravity="center"
+            android:textColor="#FFFFFF"
+            android:textSize="50sp"
+            android:textStyle="bold" />
 
         <TextView
+            android:layout_gravity="center"
+
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Encuentra tu próxima ruta"
-            android:textSize="13sp"
+            android:text="@string/encuentra_tu_proxima_ruta"
+            android:textSize="30sp"
             android:textColor="#BFD3C8"
             android:layout_marginBottom="12dp" />
 
@@ -43,7 +47,7 @@
                 android:id="@+id/btnFavoritos"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="♥ Favoritos"
+                android:text="@string/favoritos"
                 android:textSize="12sp"
                 android:textAllCaps="false"
                 android:backgroundTint="#FFFFFF"
@@ -54,7 +58,7 @@
                 android:id="@+id/btnDashboard"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="Mi perfil"
+                android:text="@string/mi_perfil"
                 android:textSize="12sp"
                 android:textAllCaps="false"
                 android:backgroundTint="#FFFFFF"
@@ -62,10 +66,23 @@
                 android:layout_marginEnd="8dp" />
 
             <Button
+                android:id="@+id/btnAjustes"
+                android:layout_width="44dp"
+                android:layout_height="40dp"
+                android:minWidth="0dp"
+                android:padding="0dp"
+                android:text="⚙"
+                android:textSize="16sp"
+                android:contentDescription="@string/ajustes"
+                android:backgroundTint="#33FFFFFF"
+                android:textColor="#FFFFFF"
+                android:layout_marginEnd="8dp" />
+
+            <Button
                 android:id="@+id/btnLogout"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="Salir"
+                android:text="@string/salir"
                 android:textSize="12sp"
                 android:textAllCaps="false"
                 android:backgroundTint="#33FFFFFF"
@@ -86,7 +103,7 @@
                 android:id="@+id/btnNuevoSendero"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="＋ Nuevo sendero"
+                android:text="@string/nuevo_sendero_2"
                 android:textSize="12sp"
                 android:textAllCaps="false"
                 android:backgroundTint="@color/amarillo"
@@ -97,11 +114,11 @@
                 android:id="@+id/btnUsuarios"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:text="👥 Usuarios"
+                android:text="@string/usuarios"
                 android:textSize="12sp"
                 android:textAllCaps="false"
                 android:backgroundTint="#FFFFFF"
-                android:textColor="@color/verde_oscuro" />
+                android:textColor="@color/verde_primario" />
 
         </LinearLayout>
 
@@ -129,7 +146,7 @@
                 style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Todos"
+                android:text="@string/todos"
                 android:checked="true" />
 
             <com.google.android.material.chip.Chip
@@ -137,21 +154,21 @@
                 style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fácil" />
+                android:text="@string/facil" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipModerada"
                 style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Moderado" />
+                android:text="@string/moderado" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipDificil"
                 style="@style/Widget.Material3.Chip.Filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Difícil" />
+                android:text="@string/dificil" />
 
         </com.google.android.material.chip.ChipGroup>
     </HorizontalScrollView>
@@ -161,7 +178,7 @@
         android:id="@+id/tvContador"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Rutas disponibles (0)"
+        android:text="@string/rutas_disponibles_0"
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="@color/texto_principal"
@@ -184,7 +201,7 @@
             android:id="@+id/tvVacio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sin resultados"
+            android:text="@string/sin_resultados"
             android:textSize="16sp"
             android:textColor="@color/texto_secundario" />
 
@@ -192,7 +209,7 @@
             android:id="@+id/btnLimpiarFiltro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Limpiar filtro"
+            android:text="@string/limpiar_filtro"
             android:textAllCaps="false"
             android:backgroundTint="@color/verde_primario"
             android:textColor="#FFFFFF"

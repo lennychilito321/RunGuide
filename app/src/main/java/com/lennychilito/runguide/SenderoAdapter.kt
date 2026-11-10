@@ -37,10 +37,11 @@ class SenderoAdapter(
         val b = holder.binding
 
         b.tvNombreSendero.text = s.nombre
-        b.tvUbicacion.text     = "📍 ${s.tipoTerreno.ifEmpty { s.ubicacion }}"
+        val ctx = holder.itemView.context
+        b.tvUbicacion.text     = "📍 ${ctx.terrenoLocal(s.tipoTerreno.ifEmpty { s.ubicacion })}"
         b.tvDistancia.text     = "${s.distancia} km"
         b.tvRating.text        = "★ ${s.rating}"
-        b.tvDificultad.text    = s.dificultad
+        b.tvDificultad.text    = ctx.dificultadLocal(s.dificultad)
 
         val (fondo, texto) = colorDificultad(s.dificultad)
         b.tvDificultad.backgroundTintList = ColorStateList.valueOf(fondo)
@@ -87,9 +88,9 @@ class SenderoAdapter(
     private fun mostrarMenuAdmin(anchor: View, s: Sendero) {
         val ctx = anchor.context
         PopupMenu(ctx, anchor).apply {
-            menu.add(0, 1, 0, "✏️  Editar sendero")
-            menu.add(0, 2, 1, "💬  Gestionar reseñas")
-            menu.add(0, 3, 2, "🗑  Eliminar sendero")
+            menu.add(0, 1, 0, ctx.getString(R.string.menu_editar))
+            menu.add(0, 2, 1, ctx.getString(R.string.menu_resenas))
+            menu.add(0, 3, 2, ctx.getString(R.string.menu_eliminar))
             setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     1 -> ctx.startActivity(
@@ -110,14 +111,14 @@ class SenderoAdapter(
 
     private fun confirmarEliminar(ctx: Context, s: Sendero) {
         AlertDialog.Builder(ctx)
-            .setTitle("Eliminar sendero")
-            .setMessage("¿Eliminar \"${s.nombre}\" con todas sus reseñas? No se puede deshacer.")
-            .setNegativeButton("Cancelar", null)
-            .setPositiveButton("Eliminar") { _, _ ->
+            .setTitle(ctx.getString(R.string.dlg_eliminar_sendero_t))
+            .setMessage(ctx.getString(R.string.dlg_eliminar_sendero_m, s.nombre))
+            .setNegativeButton(ctx.getString(R.string.cancelar), null)
+            .setPositiveButton(ctx.getString(R.string.eliminar)) { _, _ ->
                 Rtdb.eliminarSendero(s.id) { ok ->
                     Toast.makeText(
                         ctx,
-                        if (ok) "Sendero eliminado" else "No se pudo eliminar",
+                        ctx.getString(if (ok) R.string.sendero_eliminado else R.string.no_se_pudo_eliminar),
                         Toast.LENGTH_SHORT
                     ).show()
                 }

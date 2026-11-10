@@ -75,14 +75,14 @@ class DetalleSenderoActivity : AppCompatActivity() {
 
         // Llenar vistas
         binding.tvNombre.text      = nombre
-        binding.tvTipoTerreno.text = "📍 $tipoTerreno"
+        binding.tvTipoTerreno.text = "📍 ${terrenoLocal(tipoTerreno)}"
         binding.tvDistancia.text   = distancia
-        binding.tvDificultad.text  = dificultad
+        binding.tvDificultad.text  = dificultadLocal(dificultad)
         binding.tvRating.text      = rating
         binding.tvElevacion.text   = elevacion
         binding.tvTiempo.text      = tiempoEstimado
-        binding.tvDescripcion.text = descripcion.ifEmpty { "Sin descripción." }
-        binding.tvNivelBadge.text  = "📋 Nivel: $dificultad"
+        binding.tvDescripcion.text = descripcion.ifEmpty { getString(R.string.sin_descripcion) }
+        binding.tvNivelBadge.text  = getString(R.string.nivel, dificultadLocal(dificultad))
 
         // Volver
         binding.btnVolver.setOnClickListener { finish() }
@@ -120,7 +120,7 @@ class DetalleSenderoActivity : AppCompatActivity() {
             binding.btnFavorito.setOnClickListener { pedirInicioSesion() }
             pintarFavorito()
             binding.btnEnviarResena.isEnabled = false
-            binding.btnEnviarResena.text      = "🔒 Inicia sesión para reseñar"
+            binding.btnEnviarResena.text      = getString(R.string.login_para_resenar)
             binding.btnFotoResena.isEnabled   = false
             deshabilitarEstrellas()
         }
@@ -175,11 +175,11 @@ class DetalleSenderoActivity : AppCompatActivity() {
         val textoResena = binding.etResena.text.toString().trim()
 
         if (calificacionActual == 0) {
-            Toast.makeText(this, "Selecciona al menos una estrella", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.selecciona_estrella), Toast.LENGTH_SHORT).show()
             return
         }
         if (textoResena.isEmpty()) {
-            Toast.makeText(this, "Escribe algo en tu reseña", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.escribe_algo), Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -203,16 +203,16 @@ class DetalleSenderoActivity : AppCompatActivity() {
                 db.child("usuarios/$uid/calificaciones/$senderoId").setValue(calificacionActual)
                 recalcularRating()
 
-                Toast.makeText(this, "✅ Reseña publicada", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.resena_publicada), Toast.LENGTH_SHORT).show()
                 // Limpiar formulario
                 binding.etResena.text.clear()
                 fotoResenaBase64 = ""
                 binding.imgFotoResena.visibility = android.view.View.GONE
-                binding.tvFotoResenaEstado.text = "Sin foto (opcional)"
+                binding.tvFotoResenaEstado.text = getString(R.string.sin_foto_opcional)
                 cargarContadorResenas()
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Error al publicar: ${it.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, getString(R.string.error_publicar, it.message), Toast.LENGTH_LONG).show()
             }
     }
 
@@ -242,7 +242,7 @@ class DetalleSenderoActivity : AppCompatActivity() {
         fotoResenaBase64 = Base64.encodeToString(stream.toByteArray(), Base64.DEFAULT)
         binding.imgFotoResena.setImageBitmap(escalado)
         binding.imgFotoResena.visibility = android.view.View.VISIBLE
-        binding.tvFotoResenaEstado.text = "✅ Foto lista"
+        binding.tvFotoResenaEstado.text = getString(R.string.foto_lista_corta)
     }
 
     private fun escalarBitmap(bmp: Bitmap, maxPx: Int): Bitmap {
@@ -259,7 +259,7 @@ class DetalleSenderoActivity : AppCompatActivity() {
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(snap: DataSnapshot) {
                     val total = snap.childrenCount
-                    binding.btnVerResenas.text = "💬 Ver Reseñas ($total)"
+                    binding.btnVerResenas.text = getString(R.string.ver_resenas_n, total.toInt())
                 }
                 override fun onCancelled(e: DatabaseError) {}
             })
@@ -273,10 +273,10 @@ class DetalleSenderoActivity : AppCompatActivity() {
             esFavorito = !esFavorito
             if (esFavorito) {
                 db.child("usuarios/$uid/favoritos/$senderoId").setValue(true)
-                Toast.makeText(this, "Añadido a favoritos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.fav_anadido), Toast.LENGTH_SHORT).show()
             } else {
                 db.child("usuarios/$uid/favoritos/$senderoId").removeValue()
-                Toast.makeText(this, "Retirado de favoritos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.fav_retirado), Toast.LENGTH_SHORT).show()
             }
             pintarFavorito()
         }
@@ -298,12 +298,12 @@ class DetalleSenderoActivity : AppCompatActivity() {
     private fun pintarFavorito() {
         val btn = binding.btnFavorito
         if (esFavorito) {
-            btn.text = "♥  Guardado en favoritos"
+            btn.text = getString(R.string.fav_guardado)
             btn.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.corazon)))
             btn.setTextColor(getColor(R.color.white))
         } else {
-            btn.text = "♡  Guardar en favoritos"
-            btn.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.white)))
+            btn.text = getString(R.string.fav_guardar)
+            btn.setBackgroundTintList(ColorStateList.valueOf(getColor(R.color.superficie)))
             btn.setTextColor(getColor(R.color.verde_primario))
         }
         // Pequeño "latido" al cambiar de estado
@@ -314,10 +314,10 @@ class DetalleSenderoActivity : AppCompatActivity() {
 
     private fun pedirInicioSesion() {
         AlertDialog.Builder(this)
-            .setTitle("Inicia sesión para guardar")
-            .setMessage("Necesitas una cuenta para guardar senderos en tus favoritos.")
-            .setNegativeButton("Cancelar", null)
-            .setPositiveButton("Iniciar sesión") { _, _ ->
+            .setTitle(getString(R.string.login_guardar_t))
+            .setMessage(getString(R.string.login_guardar_m))
+            .setNegativeButton(getString(R.string.cancelar), null)
+            .setPositiveButton(getString(R.string.iniciar_sesion)) { _, _ ->
                 val i = Intent(this, MainActivity::class.java)
                 i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 startActivity(i)

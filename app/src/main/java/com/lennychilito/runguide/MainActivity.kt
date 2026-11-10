@@ -31,6 +31,10 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
 
+        binding.btnAjustes.setOnClickListener {
+            startActivity(Intent(this, AjustesActivity::class.java))
+        }
+
         // Botón Continuar con Google
         binding.btnGoogle.setOnClickListener {
             iniciarConGoogle { irAPantallaPorRol() }
@@ -51,7 +55,7 @@ class MainActivity : AppCompatActivity() {
             val password = binding.etPassword.text.toString()
 
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.completa_campos), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
@@ -61,7 +65,7 @@ class MainActivity : AppCompatActivity() {
                     irAPantallaPorRol()
                 }
                 .addOnFailureListener { e ->
-                    Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, getString(R.string.err_generico, e.message), Toast.LENGTH_LONG).show()
                 }
         }
     }

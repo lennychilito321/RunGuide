@@ -9,9 +9,15 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
+        android:name=".RunGuideApp"
         android:icon="@drawable/logo"
-        android:label="RunerGuide"
+        android:label="@string/app_name"
         android:theme="@style/Theme.RunGuide">
+
+        <!-- Ajustes: tema e idioma -->
+        <activity
+            android:name=".AjustesActivity"
+            android:exported="false" />
 
         <activity
             android:name=".AdminActivity"

@@ -54,6 +54,30 @@ fun String.claveDificultad(): String =
         .trim()
         .take(4)
 
+/** Nombre de la dificultad en el idioma actual (en la base de datos queda en español). */
+fun Context.dificultadLocal(raw: String): String = when (raw.claveDificultad()) {
+    "faci" -> getString(R.string.dif_facil)
+    "mode" -> getString(R.string.dif_moderada)
+    "difi" -> getString(R.string.dif_dificil)
+    else -> raw
+}
+
+/** Nombre del tipo de terreno en el idioma actual; si no es uno conocido, lo deja igual. */
+fun Context.terrenoLocal(raw: String): String = when (raw.sinTildes()) {
+    "tierra" -> getString(R.string.ter_tierra)
+    "asfalto" -> getString(R.string.ter_asfalto)
+    "montana" -> getString(R.string.ter_montana)
+    "mixto" -> getString(R.string.ter_mixto)
+    else -> raw
+}
+
+/** Minúsculas, sin tildes ni espacios sobrantes. */
+fun String.sinTildes(): String =
+    Normalizer.normalize(this, Normalizer.Form.NFD)
+        .replace(Regex("\\p{M}"), "")
+        .lowercase()
+        .trim()
+
 /** Colores (fondo, texto) del distintivo de dificultad. */
 fun colorDificultad(dificultad: String): Pair<Int, Int> = when (dificultad.claveDificultad()) {
     "faci" -> Color.parseColor("#DDF3E4") to Color.parseColor("#0A6B37")

@@ -10,7 +10,7 @@
     android:layout_marginBottom="8dp"
     android:clickable="true"
     android:focusable="true"
-    app:cardBackgroundColor="#FFFFFF"
+    app:cardBackgroundColor="@color/superficie"
     app:cardCornerRadius="18dp"
     app:cardElevation="0dp"
     app:strokeWidth="1dp"
@@ -43,7 +43,7 @@
                 android:paddingEnd="12dp"
                 android:paddingTop="5dp"
                 android:paddingBottom="5dp"
-                android:text="Moderada"
+                android:text="@string/moderada"
                 android:textSize="12sp"
                 android:textStyle="bold"
                 android:textColor="@color/amarillo_texto"
@@ -93,7 +93,7 @@
                 android:id="@+id/tvNombreSendero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nombre del sendero"
+                android:text="@string/nombre_del_sendero_2"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:textColor="@color/texto_principal" />
@@ -102,7 +102,7 @@
                 android:id="@+id/tvUbicacion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="📍 Tierra"
+                android:text="@string/tierra"
                 android:textSize="13sp"
                 android:textColor="@color/texto_secundario"
                 android:layout_marginTop="2dp" />
@@ -127,7 +127,7 @@
                     android:id="@+id/tvDistancia"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1.4 km"
+                    android:text="@string/km_ejemplo"
                     android:textSize="14sp"
                     android:textColor="@color/texto_secundario" />
 
@@ -137,7 +137,7 @@
                 android:id="@+id/btnVerRuta"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:text="Ver ruta"
+                android:text="@string/ver_ruta"
                 android:textSize="14sp"
                 android:textAllCaps="false"
                 android:backgroundTint="@color/verde_primario"

@@ -24,7 +24,7 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="👋 Hola, usuario"
+                android:text="@string/hola_usuario"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"/>
@@ -33,7 +33,7 @@
                 android:id="@+id/btnVolver"
                 android:layout_width="wrap_content"
                 android:layout_height="36dp"
-                android:text="← Volver"
+                android:text="@string/volver"
                 android:textSize="12sp"
                 android:backgroundTint="@color/negro_suave"
                 android:textColor="#FFFFFF"/>
@@ -74,7 +74,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="KM TOTALES"
+                    android:text="@string/km_totales"
                     android:textSize="10sp"
                     android:textColor="#9AA3A0"/>
 
@@ -107,7 +107,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="ACTIVIDADES"
+                    android:text="@string/actividades"
                     android:textSize="10sp"
                     android:textColor="#9AA3A0"/>
 
@@ -147,7 +147,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="RITMO PROM."
+                    android:text="@string/ritmo_prom"
                     android:textSize="10sp"
                     android:textColor="#9AA3A0"/>
 
@@ -180,7 +180,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MEJOR TIEMPO"
+                    android:text="@string/mejor_tiempo"
                     android:textSize="10sp"
                     android:textColor="#9AA3A0"/>
 

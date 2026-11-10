@@ -30,8 +30,11 @@ class AdminActivity : AppCompatActivity() {
 
     private val esEdicion get() = senderoId.isNotEmpty()
 
+    // En la base de datos se guardan siempre en español; en pantalla se traducen.
     private val dificultades = arrayOf("Fácil", "Moderada", "Difícil")
     private val terrenos = arrayOf("Tierra", "Asfalto", "Montaña", "Mixto")
+    private var dificultadSel = ""
+    private var terrenoSel = ""
 
     private val elegirFoto = registerForActivityResult(
         ActivityResultContracts.GetContent()
@@ -49,26 +52,38 @@ class AdminActivity : AppCompatActivity() {
 
         senderoId = intent.getStringExtra("SENDERO_ID").orEmpty()
 
-        binding.etDificultad.elegirDeLista("Dificultad", dificultades)
-        binding.etTipoTerreno.elegirDeLista("Tipo de terreno", terrenos)
+        binding.etDificultad.elegirDeLista(R.string.dlg_dificultad, dificultades, { dificultadLocal(it) }) {
+            dificultadSel = it
+        }
+        binding.etTipoTerreno.elegirDeLista(R.string.dlg_terreno, terrenos, { terrenoLocal(it) }) {
+            terrenoSel = it
+        }
 
         binding.btnElegirFoto.setOnClickListener { elegirFoto.launch("image/*") }
         binding.btnCancelar.setOnClickListener { finish() }
         binding.btnCrear.setOnClickListener { guardar() }
 
         if (esEdicion) {
-            binding.tvTituloForm.text = "Editar sendero"
-            binding.btnCrear.text = "💾 Guardar cambios"
+            binding.tvTituloForm.text = getString(R.string.editar_sendero_titulo)
+            binding.btnCrear.text = getString(R.string.guardar_cambios)
             cargarSendero()
         }
     }
 
     /** Campo de solo lectura que abre un diálogo con opciones al tocarlo. */
-    private fun EditText.elegirDeLista(titulo: String, opciones: Array<String>) {
+    private fun EditText.elegirDeLista(
+        titulo: Int,
+        valores: Array<String>,
+        etiqueta: (String) -> String,
+        alElegir: (String) -> Unit
+    ) {
         setOnClickListener {
             AlertDialog.Builder(this@AdminActivity)
                 .setTitle(titulo)
-                .setItems(opciones) { _, i -> setText(opciones[i]) }
+                .setItems(valores.map(etiqueta).toTypedArray()) { _, i ->
+                    setText(etiqueta(valores[i]))
+                    alElegir(valores[i])
+                }
                 .show()
         }
     }
@@ -79,28 +94,30 @@ class AdminActivity : AppCompatActivity() {
                 override fun onDataChange(snap: DataSnapshot) {
                     val s = snap.toSendero()
                     if (s == null) {
-                        Toast.makeText(this@AdminActivity, "El sendero ya no existe", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this@AdminActivity, getString(R.string.sendero_no_existe), Toast.LENGTH_SHORT).show()
                         finish()
                         return
                     }
                     binding.etNombre.setText(s.nombre)
                     binding.etUbicacion.setText(s.ubicacion)
-                    binding.etDificultad.setText(s.dificultad)
+                    dificultadSel = s.dificultad
+                    terrenoSel = s.tipoTerreno
+                    binding.etDificultad.setText(dificultadLocal(s.dificultad))
                     binding.etDistancia.setText(s.distancia)
                     binding.etElevacion.setText(s.elevacion)
-                    binding.etTipoTerreno.setText(s.tipoTerreno)
+                    binding.etTipoTerreno.setText(terrenoLocal(s.tipoTerreno))
                     binding.etTiempoEstimado.setText(s.tiempoEstimado)
                     binding.etDescripcion.setText(s.descripcion)
 
                     imagenBase64 = s.imagenBase64
                     if (imagenBase64.isNotEmpty()) {
                         mostrarPreview(imagenBase64)
-                        binding.tvFotoEstado.text = "Foto actual (elige otra para cambiarla)"
+                        binding.tvFotoEstado.text = getString(R.string.foto_actual)
                     }
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(this@AdminActivity, "Error: ${error.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@AdminActivity, getString(R.string.err_generico, error.message), Toast.LENGTH_LONG).show()
                 }
             })
     }
@@ -108,10 +125,10 @@ class AdminActivity : AppCompatActivity() {
     private fun guardar() {
         val nombre     = binding.etNombre.text.toString().trim()
         val ubicacion  = binding.etUbicacion.text.toString().trim()
-        val dificultad = binding.etDificultad.text.toString().trim()
+        val dificultad = dificultadSel
 
         if (nombre.isEmpty() || ubicacion.isEmpty() || dificultad.isEmpty()) {
-            Toast.makeText(this, "Nombre, ubicación y dificultad son obligatorios", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.obligatorios), Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -122,7 +139,7 @@ class AdminActivity : AppCompatActivity() {
             "dificultad"     to dificultad,
             "descripcion"    to binding.etDescripcion.text.toString().trim(),
             "elevacion"      to binding.etElevacion.text.toString().trim(),
-            "tipoTerreno"    to binding.etTipoTerreno.text.toString().trim(),
+            "tipoTerreno"    to terrenoSel,
             "tiempoEstimado" to binding.etTiempoEstimado.text.toString().trim(),
             "imagenBase64"   to imagenBase64,
             "imagenUrl"      to ""
@@ -140,13 +157,13 @@ class AdminActivity : AppCompatActivity() {
         tarea.addOnSuccessListener {
             Toast.makeText(
                 this,
-                if (esEdicion) "✅ Cambios guardados" else "✅ Sendero creado",
+                getString(if (esEdicion) R.string.cambios_guardados else R.string.sendero_creado),
                 Toast.LENGTH_SHORT
             ).show()
             finish()
         }.addOnFailureListener { e ->
             binding.btnCrear.isEnabled = true
-            Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.err_generico, e.message), Toast.LENGTH_LONG).show()
         }
     }
 
@@ -161,7 +178,7 @@ class AdminActivity : AppCompatActivity() {
 
         binding.imgPreview.setImageBitmap(escalado)
         binding.imgPreview.visibility = View.VISIBLE
-        binding.tvFotoEstado.text = "✅ Foto lista para guardar"
+        binding.tvFotoEstado.text = getString(R.string.foto_lista)
     }
 
     private fun mostrarPreview(base64: String) {

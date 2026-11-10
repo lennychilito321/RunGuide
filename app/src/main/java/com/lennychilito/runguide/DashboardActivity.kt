@@ -21,8 +21,8 @@ class DashboardActivity : AppCompatActivity() {
         if (user == null) { finish(); return }
 
         // Email del usuario como saludo
-        val email = user.email ?: "Usuario"
-        binding.tvSaludo.text = "Hola, ${email.substringBefore("@")}"
+        val email = user.email ?: getString(R.string.usuario_default)
+        binding.tvSaludo.text = getString(R.string.hola_nombre, email.substringBefore("@"))
 
         binding.btnVolver.setOnClickListener { finish() }
 
@@ -72,7 +72,7 @@ class DashboardActivity : AppCompatActivity() {
                 }
 
                 override fun onCancelled(error: DatabaseError) {
-                    Toast.makeText(this@DashboardActivity, "Error: ${error.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@DashboardActivity, getString(R.string.err_generico, error.message), Toast.LENGTH_SHORT).show()
                 }
             })
     }

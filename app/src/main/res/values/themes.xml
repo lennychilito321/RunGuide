@@ -1,5 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Base.Theme.RunGuide" parent="Theme.Material3.Light.NoActionBar">
+    <!-- DayNight: los colores cambian solos según values/colors.xml o values-night/colors.xml -->
+    <style name="Base.Theme.RunGuide" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/verde_primario</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorPrimaryContainer">@color/verde_claro</item>
@@ -9,7 +10,11 @@
         <item name="colorSecondaryContainer">@color/amarillo_claro</item>
         <item name="colorOnSecondaryContainer">@color/amarillo_texto</item>
         <item name="colorOutline">@color/borde</item>
+        <item name="colorSurface">@color/superficie</item>
+        <item name="colorOnSurface">@color/texto_principal</item>
         <item name="android:colorBackground">@color/fondo_app</item>
+        <item name="android:textColorPrimary">@color/texto_principal</item>
+        <item name="android:textColorSecondary">@color/texto_secundario</item>
         <item name="android:statusBarColor">@color/negro_carbon</item>
         <item name="android:windowLightStatusBar">false</item>
         <item name="materialButtonStyle">@style/Widget.RunGuide.Button</item>
@@ -28,7 +33,6 @@
         <item name="android:stateListAnimator">@null</item>
     </style>
 
-    <!-- Esquinas redondeadas suaves para botones, chips y tarjetas -->
     <style name="ShapeAppearance.RunGuide.Small" parent="ShapeAppearance.Material3.SmallComponent">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">12dp</item>

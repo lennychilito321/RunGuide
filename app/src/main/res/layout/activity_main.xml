@@ -25,13 +25,13 @@
                 android:layout_width="84dp"
                 android:layout_height="84dp"
                 android:src="@drawable/logo_app"
-                android:contentDescription="RunGuide" />
+                android:contentDescription="@string/runguide" />
 
             <TextView
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="RunGuide"
+                android:text="@string/runguide"
                 android:textSize="28sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"
@@ -41,7 +41,7 @@
                 android:id="@+id/tvSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Encuentra senderos cerca de ti"
+                android:text="@string/encuentra_senderos_cerca_de"
                 android:textColor="#BFD3C8"
                 android:textSize="14sp"
                 android:layout_marginTop="2dp" />
@@ -58,7 +58,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Correo electrónico"
+                android:text="@string/correo_electronico"
                 android:textSize="13sp"
                 android:textColor="@color/texto_secundario"
                 android:layout_marginBottom="6dp" />
@@ -67,7 +67,7 @@
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="tu@correo.com"
+                android:hint="@string/tu_correo_com"
                 android:inputType="textEmailAddress"
                 android:background="@drawable/bg_input"
                 android:padding="14dp" />
@@ -75,7 +75,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Contraseña"
+                android:text="@string/contrasena"
                 android:textSize="13sp"
                 android:textColor="@color/texto_secundario"
                 android:layout_marginTop="14dp"
@@ -94,7 +94,7 @@
                 android:id="@+id/btnLogin"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:text="Iniciar sesión"
+                android:text="@string/iniciar_sesion"
                 android:layout_marginTop="22dp"
                 android:backgroundTint="@color/verde_primario"
                 android:textColor="#FFFFFF" />
@@ -117,7 +117,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="o continúa con"
+                    android:text="@string/o_continua_con"
                     android:textSize="12sp"
                     android:textColor="@color/texto_secundario"
                     android:paddingStart="12dp"
@@ -135,7 +135,7 @@
                 style="@style/Widget.Material3.Button.OutlinedButton"
                 android:layout_width="match_parent"
                 android:layout_height="52dp"
-                android:text="Continuar con Google"
+                android:text="@string/continuar_con_google"
                 android:textColor="@color/texto_principal"
                 app:icon="@drawable/ic_google"
                 app:iconTint="@null"
@@ -148,7 +148,7 @@
                 style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:text="¿No tienes cuenta? Regístrate"
+                android:text="@string/no_tienes_cuenta_registrate"
                 android:textColor="@color/verde_primario"
                 android:layout_marginTop="8dp" />
 
@@ -157,7 +157,15 @@
                 style="@style/Widget.Material3.Button.TextButton"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:text="Entrar como invitado"
+                android:text="@string/entrar_como_invitado"
+                android:textColor="@color/texto_secundario" />
+
+            <Button
+                android:id="@+id/btnAjustes"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:text="@string/ajustes_btn"
                 android:textColor="@color/texto_secundario" />
 
         </LinearLayout>

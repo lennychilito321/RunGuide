@@ -78,7 +78,7 @@ class FavoritosActivity : AppCompatActivity() {
 
         val total = favoritosMostrados.size
         binding.tvContadorFavoritos.text =
-            if (total == 1) "1 favorito" else "$total favoritos"
+            if (total == 1) getString(R.string.favoritos_uno) else getString(R.string.favoritos_n, total)
 
         val vacio = total == 0
         binding.estadoVacioFavoritos.visibility = if (vacio) View.VISIBLE else View.GONE
@@ -87,14 +87,14 @@ class FavoritosActivity : AppCompatActivity() {
 
     private fun retirarFavorito(sendero: Sendero) {
         refFavoritos.child(sendero.id).removeValue()
-        Snackbar.make(binding.root, "Sendero retirado de favoritos", Snackbar.LENGTH_LONG)
+        Snackbar.make(binding.root, getString(R.string.favorito_retirado), Snackbar.LENGTH_LONG)
             .setDuration(5000)
-            .setAction("Deshacer") { refFavoritos.child(sendero.id).setValue(true) }
+            .setAction(getString(R.string.deshacer)) { refFavoritos.child(sendero.id).setValue(true) }
             .show()
     }
 
     private fun mostrarError(error: DatabaseError) {
-        Toast.makeText(this, "Error: ${error.message}", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, getString(R.string.err_generico, error.message), Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroy() {

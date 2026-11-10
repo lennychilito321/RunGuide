@@ -37,24 +37,24 @@ class RegisterActivity : AppCompatActivity() {
             val confirm = etConfirm.text.toString()
 
             if (email.isEmpty() || password.isEmpty() || confirm.isEmpty()) {
-                Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.completa_campos), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (password != confirm) {
-                Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.pass_no_coinciden), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             if (password.length < 6) {
-                Toast.makeText(this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.pass_corta), Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnSuccessListener {
                     Rtdb.guardarPerfil()
-                    Toast.makeText(this, "¡Cuenta creada exitosamente!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.cuenta_creada), Toast.LENGTH_SHORT).show()
                     // Ir directo a Senderos como usuario normal
                     val intent = Intent(this, SenderosActivity::class.java)
                     intent.putExtra("ROL", "usuario")
@@ -62,7 +62,7 @@ class RegisterActivity : AppCompatActivity() {
                     startActivity(intent)
                 }
                 .addOnFailureListener { e ->
-                    Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, getString(R.string.err_generico, e.message), Toast.LENGTH_LONG).show()
                 }
         }
     }

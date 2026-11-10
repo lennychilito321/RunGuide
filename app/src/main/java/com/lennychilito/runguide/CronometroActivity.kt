@@ -33,7 +33,7 @@ class CronometroActivity : AppCompatActivity() {
     private val PERMISO_GPS = 100
 
     // ── Datos del sendero ────────────────────────────────────────────────────────
-    private val nombreSendero get() = intent.getStringExtra("NOMBRE") ?: "Sendero"
+    private val nombreSendero get() = intent.getStringExtra("NOMBRE") ?: getString(R.string.sendero_default)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,15 +54,15 @@ class CronometroActivity : AppCompatActivity() {
                 pausado = true
                 handler.removeCallbacks(tickRunnable)
                 detenerGPS()
-                binding.btnPausar.text = "▶ Reanudar"
-                binding.tvEstado.text  = "⏸ Pausado"
+                binding.btnPausar.text = getString(R.string.btn_reanudar)
+                binding.tvEstado.text  = getString(R.string.estado_pausado)
             } else {
                 // REANUDAR
                 pausado = false
                 handler.post(tickRunnable)
                 iniciarGPS()
-                binding.btnPausar.text = "⏸ Pausar"
-                binding.tvEstado.text  = "🟢 Corriendo..."
+                binding.btnPausar.text = getString(R.string.pausar)
+                binding.tvEstado.text  = getString(R.string.corriendo)
             }
         }
 
@@ -70,7 +70,7 @@ class CronometroActivity : AppCompatActivity() {
         binding.btnFinalizar.setOnClickListener {
             detenerTodo()
             guardarActividad()
-            Toast.makeText(this, "¡Actividad guardada!", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.actividad_guardada), Toast.LENGTH_SHORT).show()
             finish()
         }
     }
@@ -106,7 +106,7 @@ class CronometroActivity : AppCompatActivity() {
             iniciarGPS()
         } else {
             // Sin GPS sigue con cronómetro, pero km = 0
-            Toast.makeText(this, "GPS denegado — los km no se medirán", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.gps_denegado), Toast.LENGTH_LONG).show()
             iniciarCronometro()
         }
     }
@@ -123,7 +123,7 @@ class CronometroActivity : AppCompatActivity() {
     private fun iniciarCronometro() {
         corriendo = true
         pausado   = false
-        binding.tvEstado.text = "🟢 Corriendo..."
+        binding.tvEstado.text = getString(R.string.corriendo)
         handler.post(tickRunnable)
     }
 

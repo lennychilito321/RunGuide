@@ -19,7 +19,7 @@
             android:id="@+id/btnVolverUsuarios"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:text="← Volver"
+            android:text="@string/volver"
             android:textSize="12sp"
             android:textAllCaps="false"
             android:backgroundTint="#33FFFFFF"
@@ -28,7 +28,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Usuarios"
+            android:text="@string/usuarios_2"
             android:textSize="26sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
@@ -38,7 +38,7 @@
             android:id="@+id/tvResumenUsuarios"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cargando…"
+            android:text="@string/cargando"
             android:textSize="13sp"
             android:textColor="#BFD3C8" />
 
@@ -48,7 +48,7 @@
         android:id="@+id/tvVacioUsuarios"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Aún no hay usuarios registrados"
+        android:text="@string/aun_no_hay_usuarios_registra"
         android:gravity="center"
         android:padding="32dp"
         android:textColor="@color/texto_secundario"

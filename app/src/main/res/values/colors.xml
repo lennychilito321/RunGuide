@@ -16,6 +16,7 @@
     <color name="amarillo_claro">#FAF1D6</color>
     <color name="amarillo_texto">#6B5200</color>
 
+    <color name="superficie">#FFFFFF</color>
     <color name="fondo_app">#F5F6F4</color>
     <color name="gris_campo">#EEF0EE</color>
     <color name="borde">#E2E6E3</color>

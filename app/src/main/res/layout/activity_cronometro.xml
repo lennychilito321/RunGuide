@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🏃 ACTIVIDAD EN CURSO"
+            android:text="@string/actividad_en_curso"
             android:textSize="13sp"
             android:textColor="#9AA3A0"
             android:letterSpacing="0.1"/>
@@ -24,7 +24,7 @@
             android:id="@+id/tvNombreSendero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="📍 Sendero"
+            android:text="@string/sendero"
             android:textSize="16sp"
             android:textColor="#FFFFFF"
             android:layout_marginTop="4dp"/>
@@ -49,7 +49,7 @@
         android:id="@+id/tvEstado"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="🟢 Corriendo..."
+        android:text="@string/corriendo"
         android:textSize="14sp"
         android:textColor="#9AA3A0"
         android:gravity="center"
@@ -68,7 +68,7 @@
             android:id="@+id/btnPausar"
             android:layout_width="140dp"
             android:layout_height="52dp"
-            android:text="⏸ Pausar"
+            android:text="@string/pausar"
             android:textSize="15sp"
             android:backgroundTint="@color/negro_suave"
             android:textColor="#FFFFFF"
@@ -78,7 +78,7 @@
             android:id="@+id/btnFinalizar"
             android:layout_width="140dp"
             android:layout_height="52dp"
-            android:text="⏹ Finalizar"
+            android:text="@string/finalizar"
             android:textSize="15sp"
             android:backgroundTint="@color/peligro"
             android:textColor="#FFFFFF"/>
@@ -121,7 +121,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="KM RECORRIDOS"
+                android:text="@string/km_recorridos"
                 android:textSize="10sp"
                 android:textColor="#9AA3A0"/>
 
@@ -156,7 +156,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="MIN/KM"
+                android:text="@string/min_km"
                 android:textSize="10sp"
                 android:textColor="#9AA3A0"/>
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Modo oscuro: mismos nombres, tonos más apagados para no cansar la vista -->
+    <color name="superficie">#1A1F1D</color>
+    <color name="fondo_app">#111514</color>
+    <color name="gris_campo">#242B28</color>
+    <color name="borde">#2C3532</color>
+
+    <color name="texto_principal">#ECEFEE</color>
+    <color name="texto_secundario">#9AA5A1</color>
+
+    <color name="verde_primario">#3C9A6D</color>
+    <color name="verde_oscuro">#8FD1AE</color>
+    <color name="verde_claro">#1F3329</color>
+
+    <color name="amarillo_claro">#3A3218</color>
+    <color name="amarillo_texto">#EBCB70</color>
+
+    <color name="peligro">#D8675D</color>
+</resources>

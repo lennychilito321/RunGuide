@@ -43,17 +43,17 @@ fun AppCompatActivity.iniciarConGoogle(alTerminar: () -> Unit) {
                         alTerminar()
                     }
                     .addOnFailureListener { e ->
-                        Toast.makeText(activity, "No se pudo entrar: ${e.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity, activity.getString(R.string.google_no_entrar, e.message), Toast.LENGTH_LONG).show()
                     }
             } else {
-                Toast.makeText(activity, "Tipo de credencial no compatible", Toast.LENGTH_LONG).show()
+                Toast.makeText(activity, activity.getString(R.string.google_incompatible), Toast.LENGTH_LONG).show()
             }
         } catch (e: GetCredentialCancellationException) {
             // El usuario cerró el selector de cuentas: no es un error.
         } catch (e: GetCredentialException) {
-            Toast.makeText(activity, "Google: ${e.message ?: "no se pudo iniciar sesión"}", Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, activity.getString(R.string.google_error, e.message ?: activity.getString(R.string.google_fallo)), Toast.LENGTH_LONG).show()
         } catch (e: GoogleIdTokenParsingException) {
-            Toast.makeText(activity, "Respuesta de Google inválida", Toast.LENGTH_LONG).show()
+            Toast.makeText(activity, activity.getString(R.string.google_invalido), Toast.LENGTH_LONG).show()
         }
     }
 }

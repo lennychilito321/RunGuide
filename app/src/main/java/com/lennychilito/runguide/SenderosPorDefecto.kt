@@ -1,5 +1,7 @@
 package com.lennychilito.runguide
 
+import com.google.firebase.database.DataSnapshot
+
 /**
  * Senderos de Popayán que vienen con el sistema. Tienen id fijo, así que cargarlos
  * varias veces no los duplica: solo restaura sus datos originales.
@@ -48,13 +50,42 @@ object SenderosPorDefecto {
         )
     )
 
+    /** Los tres senderos de prueba que existían antes: se borran para que solo queden los predeterminados. */
+    // Sin tildes ni mayúsculas, para que coincidan aunque se hayan escrito distinto
+    private val NOMBRES_DE_PRUEBA = setOf("sendero el morro", "cerro nimbe", "ruta rio molino")
+
+    private val ids get() = lista.map { it.id }.toSet()
+
     /**
-     * Escribe los senderos predeterminados en Firebase (solo el administrador puede).
+     * Deja el catálogo como debe quedar (solo el administrador puede escribir):
+     *  1) agrega los predeterminados que falten, sin tocar los que ya están;
+     *  2) borra los tres senderos de prueba antiguos, con sus reseñas y calificaciones.
+     * Se llama con la lista actual de senderos, así que es seguro repetirlo.
+     */
+    fun asegurar(senderos: DataSnapshot, onError: () -> Unit = {}) {
+        val existentes = senderos.children.mapNotNull { it.key }.toSet()
+
+        val faltan = lista.filter { it.id !in existentes }
+        if (faltan.isNotEmpty()) escribir(faltan) { ok -> if (!ok) onError() }
+
+        for (s in senderos.children) {
+            val id = s.key ?: continue
+            val nombre = s.child("nombre").value?.toString().orEmpty().sinTildes()
+            if (id !in ids && nombre in NOMBRES_DE_PRUEBA) {
+                Rtdb.eliminarSendero(id) { ok -> if (!ok) onError() }
+            }
+        }
+    }
+
+    /**
+     * Escribe todos los senderos predeterminados en Firebase, restaurando sus datos originales.
      * Se escribe campo por campo para no borrar la calificación que ya tengan.
      */
-    fun cargar(onListo: (Boolean) -> Unit = {}) {
+    fun cargar(onListo: (Boolean) -> Unit = {}) = escribir(lista, onListo)
+
+    private fun escribir(defs: List<Def>, onListo: (Boolean) -> Unit) {
         val cambios = HashMap<String, Any?>()
-        for (d in lista) {
+        for (d in defs) {
             val campos = mapOf(
                 "nombre" to d.nombre,
                 "ubicacion" to "Popayán",

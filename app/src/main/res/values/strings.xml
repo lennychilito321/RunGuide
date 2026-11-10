@@ -196,6 +196,7 @@
     <string name="cargar">Cargar</string>
     <string name="predeterminados_ok">Senderos predeterminados cargados</string>
     <string name="err_predeterminados">No se pudieron cargar los senderos</string>
+    <string name="err_catalogo">No se pudo actualizar el catálogo. Revisa las reglas de Firebase.</string>
 
     <!-- ========== Mapa ========== -->
     <string name="ubicacion_mapa_titulo">📍 Ubicación del sendero</string>

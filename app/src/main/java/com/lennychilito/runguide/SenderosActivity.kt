@@ -115,10 +115,17 @@ class SenderosActivity : AppCompatActivity() {
                 snapshot.children.mapNotNullTo(listaCompletaSenderos) { it.toSendero() }
                 aplicarFiltro()
 
-                // Catálogo vacío: el administrador carga los senderos que vienen con el sistema
-                if (esAdmin && !sembrando && snapshot.childrenCount == 0L) {
+                // El administrador deja el catálogo con los senderos del sistema: agrega los
+                // predeterminados que falten y borra los tres de prueba antiguos (una vez por sesión)
+                if (esAdmin && !sembrando) {
                     sembrando = true
-                    SenderosPorDefecto.cargar()
+                    SenderosPorDefecto.asegurar(snapshot) {
+                        Toast.makeText(
+                            this@SenderosActivity,
+                            getString(R.string.err_catalogo),
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
                 }
             }
 

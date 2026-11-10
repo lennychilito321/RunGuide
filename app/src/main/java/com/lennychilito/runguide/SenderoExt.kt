@@ -35,6 +35,7 @@ fun DataSnapshot.toSendero(): Sendero? {
 /** Foto incluida en la app para los senderos predeterminados; si no hay, la de montaña. */
 fun imagenLocalRes(clave: String): Int = when (clave) {
     "morro" -> R.drawable.sendero_morro
+    "torre" -> R.drawable.sendero_torre
     "san_bernardino" -> R.drawable.sendero_san_bernardino
     else -> R.drawable.montana
 }

@@ -196,6 +196,7 @@
     <string name="cargar">Load</string>
     <string name="predeterminados_ok">Default trails loaded</string>
     <string name="err_predeterminados">Couldn\'t load the trails</string>
+    <string name="err_catalogo">Couldn\'t update the catalog. Check your Firebase rules.</string>
 
     <!-- ========== Map ========== -->
     <string name="ubicacion_mapa_titulo">📍 Trail location</string>

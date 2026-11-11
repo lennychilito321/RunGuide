@@ -56,12 +56,8 @@ class DashboardActivity : AppCompatActivity() {
                     }
 
                     // Ritmo promedio (min/km)
-                    val ritmoTexto = if (totalKm > 0) {
-                        val minPorKm = (totalSegundos / 60.0) / totalKm
-                        val m = minPorKm.toInt()
-                        val s = ((minPorKm - m) * 60).toInt()
-                        String.format(Locale.getDefault(), "%d:%02d", m, s)
-                    } else "—"
+                    // «—» si hay muy poca distancia (evita ritmos absurdos como 163:25)
+                    val ritmoTexto = formatoRitmo(totalSegundos, totalKm)
 
                     // Mejor tiempo formateado
                     val mejorTexto = if (mejorTiempo == Long.MAX_VALUE) "—" else {

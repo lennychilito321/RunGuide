@@ -77,6 +77,7 @@ object Recorrido {
         this.conGps = conGps
         km = 0.0
         puntos.clear()
+        muestras.clear()
         ultima = null
         acumuladoMs = 0L
         tramoDesde = SystemClock.elapsedRealtime()
@@ -101,7 +102,14 @@ object Recorrido {
         avisar()
     }
 
-    /** Nueva lectura del GPS: suma distancia y agrega el punto al recorrido. */
+    /**
+     * Nueva lectura del GPS: suma distancia y agrega el punto al recorrido.
+     *
+     * Estando quieto, el GPS «baila» varios metros entre lecturas. Para que eso no sume
+     * distancia, un desplazamiento solo cuenta si supera el margen de error de la lectura
+     * (mínimo 8 m). Las lecturas descartadas no mueven el punto de referencia, así que al
+     * caminar despacio la distancia real se termina sumando igual.
+     */
     fun nuevaUbicacion(l: Location) {
         if (!activo || pausado) return
         if (l.hasAccuracy() && l.accuracy > 30f) return     // lectura poco precisa: se ignora
@@ -111,12 +119,34 @@ object Recorrido {
             puntos.add(punto)
         } else {
             val metros = anterior.distanceTo(l)
-            if (metros < 3f) return                           // ruido del GPS estando quieto
+            val margen = maxOf(8f, if (l.hasAccuracy()) l.accuracy else 10f)
+            if (metros < margen) return                       // dentro del error del GPS: quieto
+            if (l.hasSpeed() && l.speed < 0.3f && metros < margen * 2) return  // casi sin velocidad: ruido
             km += metros / 1000.0
             puntos.add(punto)
         }
         ultima = l
+        muestras.add(segundos() to km)
+        if (muestras.size > 300) muestras.removeAt(0)
         avisar()
+    }
+
+    /** (segundo de la actividad, km acumulados) en cada punto aceptado: sirve para el ritmo actual. */
+    private val muestras = mutableListOf<Pair<Long, Double>>()
+
+    /**
+     * Ritmo actual en segundos por km, calculado con lo recorrido en los últimos 30 s.
+     * Devuelve null (se muestra «—») si estás quieto, en pausa o el ritmo pasa de 30 min/km.
+     */
+    fun ritmoActual(): Long? {
+        if (!activo || pausado) return null
+        val ahora = segundos()
+        val referencia = muestras.lastOrNull { it.first <= ahora - 30 } ?: muestras.firstOrNull() ?: return null
+        val dKm = km - referencia.second
+        val dSeg = ahora - referencia.first
+        if (dKm < 0.02 || dSeg <= 0) return null
+        val ritmo = (dSeg / dKm).toLong()
+        return if (ritmo > 30 * 60) null else ritmo
     }
 
     /** Termina la actividad y devuelve sus datos. */

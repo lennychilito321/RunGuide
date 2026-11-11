@@ -23,12 +23,21 @@ fun formatoDuracion(segundos: Long): String {
     else String.format(Locale.getDefault(), "%dm %02ds", m, s)
 }
 
-/** Ritmo en min/km («5:18»); «—» si todavía no hay distancia. */
+/**
+ * Ritmo promedio en min/km («5:18»). Muestra «—» con menos de 50 m recorridos o si sale
+ * más lento que 60 min/km: son casos en que el número no significa nada (por ejemplo, quieto).
+ */
 fun formatoRitmo(segundos: Long, km: Double): String {
-    if (km < 0.01 || segundos <= 0) return "—"
+    if (km < 0.05 || segundos <= 0) return "—"
     val segPorKm = (segundos / km).toLong()
-    return String.format(Locale.getDefault(), "%d:%02d", segPorKm / 60, segPorKm % 60)
+    if (segPorKm > 60 * 60) return "—"
+    return formatoSegPorKm(segPorKm)
 }
+
+/** Segundos por km como «5:18»; «—» si no hay dato. */
+fun formatoSegPorKm(segPorKm: Long?): String =
+    if (segPorKm == null) "—"
+    else String.format(Locale.getDefault(), "%d:%02d", segPorKm / 60, segPorKm % 60)
 
 fun formatoDistancia(km: Double): String = String.format(Locale.getDefault(), "%.2f", km)
 

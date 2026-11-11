@@ -280,7 +280,8 @@ class CronometroActivity : AppCompatActivity() {
         val seg = Recorrido.segundos()
         val km = Recorrido.km
         val reloj = formatoReloj(seg)
-        val ritmo = formatoRitmo(seg, km)
+        // Ritmo actual (últimos 30 s), como en Strava: «—» si estás quieto o en pausa
+        val ritmo = formatoSegPorKm(Recorrido.ritmoActual())
         val distancia = formatoDistancia(km)
 
         binding.tvNombreSendero.text = Recorrido.nombre.ifEmpty { nombrePedido() }

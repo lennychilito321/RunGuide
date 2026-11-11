@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Ruta en curso: mapa en vivo detrás y un panel con tiempo, distancia y ritmo.
-     Usa los colores del tema (sin fondo negro) y mantiene la pantalla encendida. -->
+<!-- Actividad en curso, al estilo Strava: mapa en vivo con el panel de datos abajo,
+     o la vista de «datos grandes» (tiempo, ritmo y distancia a pantalla completa). -->
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/transparent"
+    android:background="@color/fondo_app"
     android:keepScreenOn="true">
 
     <!-- Mapa en vivo -->
@@ -14,7 +14,70 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-    <!-- Barra superior flotante: sendero y estado -->
+    <!-- Vista de datos grandes (tapa el mapa cuando está activa) -->
+    <LinearLayout
+        android:id="@+id/vistaDatos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@color/superficie"
+        android:paddingTop="120dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tvGrandeTiempo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="00:00"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:textColor="@color/texto_principal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tiempo_t"
+            android:textSize="13sp"
+            android:textColor="@color/texto_secundario" />
+
+        <TextView
+            android:id="@+id/tvGrandeRitmo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="—"
+            android:textSize="96sp"
+            android:textStyle="bold"
+            android:textColor="@color/texto_principal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ritmo_label"
+            android:textSize="13sp"
+            android:textColor="@color/texto_secundario" />
+
+        <TextView
+            android:id="@+id/tvGrandeKm"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="0.00"
+            android:textSize="64sp"
+            android:textStyle="bold"
+            android:textColor="@color/texto_principal" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/distancia_label"
+            android:textSize="13sp"
+            android:textColor="@color/texto_secundario" />
+    </LinearLayout>
+
+    <!-- Barra superior flotante: estado, nombre y cambio de vista -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,7 +89,7 @@
         android:gravity="center_vertical"
         android:background="@drawable/bg_card"
         android:paddingStart="16dp"
-        android:paddingEnd="16dp"
+        android:paddingEnd="10dp"
         android:paddingTop="10dp"
         android:paddingBottom="10dp">
 
@@ -37,18 +100,18 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvEstado"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/actividad_en_curso"
-                android:textSize="10sp"
-                android:textColor="@color/texto_secundario"
-                android:letterSpacing="0.08" />
+                android:text="@string/corriendo"
+                android:textSize="11sp"
+                android:textColor="@color/verde_primario" />
 
             <TextView
                 android:id="@+id/tvNombreSendero"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/sendero"
+                android:text="@string/carrera_libre"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 android:textColor="@color/texto_principal"
@@ -56,195 +119,194 @@
                 android:ellipsize="end" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tvEstado"
+        <Button
+            android:id="@+id/btnVistaDatos"
+            style="@style/Widget.Material3.Button.TonalButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/corriendo"
-            android:textSize="12sp"
-            android:textColor="@color/verde_oscuro"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:paddingTop="5dp"
-            android:paddingBottom="5dp"
-            android:background="@drawable/bg_badge"
-            android:backgroundTint="@color/verde_claro" />
+            android:layout_height="40dp"
+            android:minWidth="0dp"
+            android:text="@string/ver_datos"
+            android:textSize="12sp" />
     </LinearLayout>
 
-    <!-- Parte inferior: botón de centrar (sobre el panel) + panel de datos -->
+    <!-- Parte inferior: botón de centrar + panel -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="vertical">
 
-    <!-- Botón: volver a centrar el mapa en mi posición -->
-    <TextView
-        android:id="@+id/btnCentrar"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_gravity="end"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="12dp"
-        android:gravity="center"
-        android:text="📍"
-        android:textSize="20sp"
-        android:contentDescription="@string/centrar_mapa"
-        android:background="@drawable/bg_circulo"
-        android:elevation="4dp"
-        android:clickable="true"
-        android:focusable="true" />
-
-    <!-- Panel inferior: tiempo, progreso, distancia, ritmo y botones -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="@drawable/bg_panel_inferior"
-        android:elevation="8dp"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:paddingTop="16dp"
-        android:paddingBottom="20dp">
-
-        <!-- Tiempo transcurrido -->
         <TextView
-            android:id="@+id/tvCronometro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="00:00"
-            android:textSize="52sp"
-            android:textStyle="bold"
-            android:textColor="@color/texto_principal"
+            android:id="@+id/btnCentrar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="12dp"
             android:gravity="center"
-            android:fontFamily="monospace" />
+            android:text="📍"
+            android:textSize="20sp"
+            android:contentDescription="@string/centrar_mapa"
+            android:background="@drawable/bg_circulo"
+            android:elevation="4dp"
+            android:clickable="true"
+            android:focusable="true" />
 
-        <TextView
-            android:id="@+id/tvTiempoEstimado"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textColor="@color/texto_secundario"
-            android:gravity="center" />
-
-        <!-- Progreso de la distancia del sendero -->
-        <com.google.android.material.progressindicator.LinearProgressIndicator
-            android:id="@+id/progresoDistancia"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:max="100"
-            app:trackThickness="8dp"
-            app:trackCornerRadius="4dp"
-            app:trackColor="@color/gris_campo"
-            app:indicatorColor="@color/verde_primario" />
-
-        <TextView
-            android:id="@+id/tvProgreso"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:textSize="12sp"
-            android:textColor="@color/texto_secundario"
-            android:gravity="center" />
-
-        <!-- Distancia y ritmo -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="14dp">
+            android:orientation="vertical"
+            android:background="@drawable/bg_panel_inferior"
+            android:elevation="8dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="20dp">
 
+            <!-- Tiempo · Ritmo · Distancia (el ritmo en grande, como en Strava) -->
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:id="@+id/filaMetricas"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/bg_input"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:layout_marginEnd="6dp">
+                android:orientation="horizontal"
+                android:gravity="bottom">
 
-                <TextView
-                    android:id="@+id/tvKm"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:text="0.00"
-                    android:textSize="26sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/texto_principal" />
+                    android:orientation="vertical"
+                    android:gravity="center">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tvCronometro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00:00"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:fontFamily="monospace"
+                        android:textColor="@color/texto_principal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/tiempo_t"
+                        android:textSize="11sp"
+                        android:textColor="@color/texto_secundario" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1.2"
                     android:layout_height="wrap_content"
-                    android:text="@string/km_recorridos"
-                    android:textSize="10sp"
-                    android:textColor="@color/texto_secundario" />
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvRitmo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="—"
+                        android:textSize="36sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/texto_principal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/ritmo_label"
+                        android:textSize="11sp"
+                        android:textColor="@color/texto_secundario" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tvKm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.00"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/texto_principal" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/distancia_label"
+                        android:textSize="11sp"
+                        android:textColor="@color/texto_secundario" />
+                </LinearLayout>
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
+            <!-- Avance respecto al sendero (solo cuando es la ruta de un sendero) -->
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progresoDistancia"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:background="@drawable/bg_input"
-                android:paddingTop="10dp"
-                android:paddingBottom="10dp"
-                android:layout_marginStart="6dp">
+                android:layout_marginTop="12dp"
+                android:max="100"
+                app:trackThickness="8dp"
+                app:trackCornerRadius="4dp"
+                app:trackColor="@color/gris_campo"
+                app:indicatorColor="@color/verde_primario" />
 
-                <TextView
-                    android:id="@+id/tvRitmo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="—"
-                    android:textSize="26sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/texto_principal" />
+            <TextView
+                android:id="@+id/tvProgreso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textSize="12sp"
+                android:textColor="@color/texto_secundario"
+                android:gravity="center" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/min_km"
-                    android:textSize="10sp"
-                    android:textColor="@color/texto_secundario" />
+            <TextView
+                android:id="@+id/tvTiempoEstimado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/texto_secundario"
+                android:gravity="center" />
+
+            <!-- Pausar / Finalizar -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="14dp">
+
+                <Button
+                    android:id="@+id/btnPausar"
+                    style="@style/Widget.Material3.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="54dp"
+                    android:text="@string/pausar"
+                    android:textSize="15sp"
+                    android:textColor="@color/texto_principal"
+                    app:strokeColor="@color/borde"
+                    app:cornerRadius="27dp"
+                    android:layout_marginEnd="6dp" />
+
+                <Button
+                    android:id="@+id/btnFinalizar"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="54dp"
+                    android:text="@string/finalizar"
+                    android:textSize="15sp"
+                    android:backgroundTint="@color/peligro"
+                    android:textColor="#FFFFFF"
+                    app:cornerRadius="27dp"
+                    android:layout_marginStart="6dp" />
             </LinearLayout>
         </LinearLayout>
-
-        <!-- Pausar / Finalizar -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="14dp">
-
-            <Button
-                android:id="@+id/btnPausar"
-                style="@style/Widget.Material3.Button.OutlinedButton"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="52dp"
-                android:text="@string/pausar"
-                android:textSize="15sp"
-                android:textColor="@color/texto_principal"
-                app:strokeColor="@color/borde"
-                app:cornerRadius="12dp"
-                android:layout_marginEnd="6dp" />
-
-            <Button
-                android:id="@+id/btnFinalizar"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="52dp"
-                android:text="@string/finalizar"
-                android:textSize="15sp"
-                android:backgroundTint="@color/peligro"
-                android:textColor="#FFFFFF"
-                android:layout_marginStart="6dp" />
-        </LinearLayout>
-    </LinearLayout>
-
     </LinearLayout>
 
 </FrameLayout>

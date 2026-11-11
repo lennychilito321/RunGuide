@@ -78,6 +78,27 @@ class SenderosActivity : AppCompatActivity() {
             binding.btnPredeterminados.setOnClickListener { confirmarPredeterminados() }
         }
 
+        // Carrera libre: el usuario corre por donde quiera y se guarda su tiempo y distancia
+        binding.btnIniciarCarrera.setOnClickListener {
+            if (esInvitado && !Recorrido.activo) {
+                AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.login_carrera_t))
+                    .setMessage(getString(R.string.login_carrera_m))
+                    .setNegativeButton(getString(R.string.cancelar), null)
+                    .setPositiveButton(getString(R.string.iniciar_sesion)) { _, _ ->
+                        startActivity(
+                            Intent(this, MainActivity::class.java)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                        )
+                    }
+                    .show()
+            } else if (Recorrido.activo) {
+                startActivity(Intent(this, CronometroActivity::class.java))
+            } else {
+                startActivity(Intent(this, CronometroActivity::class.java).putExtra("LIBRE", true))
+            }
+        }
+
         binding.recyclerSenderos.layoutManager = LinearLayoutManager(this)
         adapter = SenderoAdapter(
             listaSenderosMostrados,
@@ -181,6 +202,13 @@ class SenderosActivity : AppCompatActivity() {
                 if (hayFiltro) getString(R.string.sin_resultados) else getString(R.string.sin_senderos)
             binding.btnLimpiarFiltro.visibility = if (hayFiltro) View.VISIBLE else View.GONE
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Si hay una actividad en curso, el botón lleva de vuelta a ella
+        binding.btnIniciarCarrera.text =
+            getString(if (Recorrido.activo) R.string.volver_carrera else R.string.iniciar_carrera)
     }
 
     override fun onDestroy() {

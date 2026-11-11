@@ -9,11 +9,39 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
+    <!-- Seguir registrando la actividad con la pantalla bloqueada (servicio en primer plano
+         con notificación). No hace falta el permiso de ubicación «todo el tiempo». -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:name=".RunGuideApp"
         android:icon="@drawable/logo"
         android:label="@string/app_name"
         android:theme="@style/Theme.RunGuide">
+
+        <!-- Registro del GPS en segundo plano durante una actividad -->
+        <service
+            android:name=".RecorridoService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <!-- Comparte la imagen del resumen con otras apps -->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.archivos"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/rutas_archivos" />
+        </provider>
+
+        <!-- Resumen al terminar una actividad (tarjeta para compartir) -->
+        <activity
+            android:name=".ResumenActividadActivity"
+            android:exported="false" />
 
         <!-- Resumen de la ruta: mapa, datos y botón para iniciarla -->
         <activity
@@ -66,6 +94,7 @@
         <activity
             android:name=".CronometroActivity"
             android:exported="false"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
         <!-- Dashboard del usuario -->

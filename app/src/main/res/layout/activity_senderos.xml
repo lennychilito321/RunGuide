@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- Catálogo + botón flotante «Iniciar carrera» (carrera libre, sin sendero) -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@android:color/transparent">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <!-- HEADER (con el botón de ajustes arriba a la izquierda) -->
     <FrameLayout
@@ -250,7 +255,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingBottom="16dp"
+        android:paddingBottom="96dp"
         android:layoutAnimation="@anim/layout_entrada" />
 
 </LinearLayout>
+
+    <!-- Iniciar una carrera libre (o volver a la que está en curso) -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/btnIniciarCarrera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="20dp"
+        android:text="@string/iniciar_carrera"
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:textColor="@color/negro_carbon"
+        app:icon="@drawable/ic_correr"
+        app:iconTint="@color/negro_carbon"
+        app:backgroundTint="@color/amarillo" />
+
+</FrameLayout>

@@ -1,11 +1,16 @@
 package com.lennychilito.runguide
 
+import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.lennychilito.runguide.databinding.ActivityDashboardBinding
+import com.lennychilito.runguide.databinding.ItemActividadBinding
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 class DashboardActivity : AppCompatActivity() {
@@ -69,11 +74,53 @@ class DashboardActivity : AppCompatActivity() {
                     binding.tvActividades.text  = totalActs.toString()
                     binding.tvRitmo.text        = ritmoTexto
                     binding.tvMejorTiempo.text  = mejorTexto
+
+                    mostrarHistorial(snapshot)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
                     Toast.makeText(this@DashboardActivity, getString(R.string.err_generico, error.message), Toast.LENGTH_SHORT).show()
                 }
             })
+    }
+
+    /** «Mis actividades»: de la más reciente a la más antigua; al tocar una se abre su resumen. */
+    private fun mostrarHistorial(actividades: DataSnapshot) {
+        val lista = binding.listaActividades
+        lista.removeAllViews()
+        val formato = SimpleDateFormat("d MMM yyyy · HH:mm", Locale.getDefault())
+
+        val ordenadas = actividades.children.sortedByDescending {
+            it.child("fecha").value?.toString()?.toLongOrNull() ?: 0L
+        }
+        binding.tvSinActividades.visibility = if (ordenadas.isEmpty()) View.VISIBLE else View.GONE
+
+        for (a in ordenadas) {
+            val tipo = a.child("tipo").value?.toString().orEmpty()
+            val nombre = nombreActividad(a.child("sendero").value?.toString() ?: getString(R.string.sendero_default), tipo)
+            val km = a.child("kmRecorridos").value?.toString()?.toDoubleOrNull() ?: 0.0
+            val seg = a.child("tiempoSegundos").value?.toString()?.toLongOrNull() ?: 0L
+            val fecha = a.child("fecha").value?.toString()?.toLongOrNull() ?: 0L
+            val ruta = a.rutaGuardada()
+
+            val fila = ItemActividadBinding.inflate(layoutInflater, lista, false)
+            fila.tvActIcono.text = if (tipo == "libre") "🏃" else "🥾"
+            fila.tvActItemNombre.text = nombre
+            fila.tvActItemFecha.text = formato.format(Date(fecha))
+            fila.tvActItemDatos.text = getString(
+                R.string.actividad_datos, formatoDistancia(km), formatoDuracion(seg), formatoRitmo(seg, km)
+            )
+            fila.root.setOnClickListener {
+                startActivity(
+                    Intent(this, ResumenActividadActivity::class.java)
+                        .putExtra("NOMBRE", nombre)
+                        .putExtra("SEGUNDOS", seg)
+                        .putExtra("KM", km)
+                        .putExtra("FECHA", fecha)
+                        .putExtra("RUTA", ruta.aArreglo())
+                )
+            }
+            lista.addView(fila.root)
+        }
     }
 }

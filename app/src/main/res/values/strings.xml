@@ -220,6 +220,42 @@
     <string name="tiempo_estimado_ruta">Tiempo estimado: %1$d min</string>
     <string name="sin_app_mapas">No se pudo abrir el mapa en este dispositivo</string>
 
+    <!-- ========== Carrera libre y actividades ========== -->
+    <string name="carrera_libre">Carrera libre</string>
+    <string name="iniciar_carrera">Iniciar carrera</string>
+    <string name="volver_carrera">Volver a la carrera</string>
+    <string name="login_carrera_t">Inicia sesión para correr</string>
+    <string name="login_carrera_m">Necesitas una cuenta para guardar tus carreras y ver tu historial.</string>
+    <string name="tiempo_t">Tiempo</string>
+    <string name="ritmo_t">Ritmo</string>
+    <string name="distancia_t">Distancia</string>
+    <string name="ritmo_label">Ritmo (/km)</string>
+    <string name="distancia_label">Distancia (km)</string>
+    <string name="ver_datos">Datos</string>
+    <string name="ver_mapa">Mapa</string>
+    <string name="dlg_finalizar_t">¿Terminar la actividad?</string>
+    <string name="dlg_finalizar_m">Puedes guardarla en tu historial o descartarla.</string>
+    <string name="guardar">Guardar</string>
+    <string name="descartar">Descartar</string>
+    <string name="seguir">Seguir</string>
+    <string name="no_guardada_invitado">Como invitado, la actividad no se guarda en tu historial</string>
+    <string name="carrera_sigue">La actividad sigue grabándose. Vuelve a ella desde la notificación.</string>
+    <string name="ya_hay_carrera">Ya tienes una actividad en curso: termínala para empezar otra</string>
+    <string name="notif_canal">Actividad en curso</string>
+    <string name="notif_texto">%1$s km · toca para volver</string>
+    <string name="notif_pausa">En pausa · %1$s km</string>
+    <string name="resumen_actividad">Resumen de la actividad</string>
+    <string name="fondo_transparente">Fondo transparente (para poner sobre una foto)</string>
+    <string name="compartir">Compartir</string>
+    <string name="guardar_imagen">Guardar imagen</string>
+    <string name="imagen_guardada">Imagen guardada en Imágenes/RunGuide</string>
+    <string name="error_imagen">No se pudo crear la imagen</string>
+    <string name="km_valor">%1$s km</string>
+    <string name="ritmo_km">%1$s /km</string>
+    <string name="mis_actividades">Mis actividades</string>
+    <string name="sin_actividades">Aún no tienes actividades. Inicia una carrera desde el catálogo.</string>
+    <string name="actividad_datos">%1$s km · %2$s · %3$s /km</string>
+
     <!-- ========== Ajustes ========== -->
     <string name="ajustes">Ajustes</string>
     <string name="ajustes_btn">⚙ Ajustes</string>

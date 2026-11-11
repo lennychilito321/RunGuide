@@ -60,7 +60,10 @@ class UsuariosActivity : AppCompatActivity() {
                 for (u in snapshot.children) {
                     val actividades = u.child("actividades").children.map { a ->
                         Actividad(
-                            sendero = a.child("sendero").value?.toString() ?: "Sendero",
+                            sendero = nombreActividad(
+                                a.child("sendero").value?.toString() ?: getString(R.string.sendero_default),
+                                a.child("tipo").value?.toString().orEmpty()
+                            ),
                             km = a.child("kmRecorridos").value?.toString()?.toDoubleOrNull() ?: 0.0,
                             segundos = a.child("tiempoSegundos").value?.toString()?.toLongOrNull() ?: 0L,
                             fecha = a.child("fecha").value?.toString()?.toLongOrNull() ?: 0L

@@ -188,6 +188,34 @@
 
         </LinearLayout>
 
+        <!-- MIS ACTIVIDADES (carreras libres y rutas de senderos) -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="10dp"
+            android:text="@string/mis_actividades"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/texto_principal" />
+
+        <TextView
+            android:id="@+id/tvSinActividades"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sin_actividades"
+            android:textSize="13sp"
+            android:textColor="@color/texto_secundario"
+            android:background="@drawable/bg_card"
+            android:padding="16dp"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:id="@+id/listaActividades"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
     </LinearLayout>
 
 </ScrollView>

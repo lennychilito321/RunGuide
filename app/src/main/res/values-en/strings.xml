@@ -220,6 +220,42 @@
     <string name="tiempo_estimado_ruta">Estimated time: %1$d min</string>
     <string name="sin_app_mapas">Couldn\'t open the map on this device</string>
 
+    <!-- ========== Free run and activities ========== -->
+    <string name="carrera_libre">Free run</string>
+    <string name="iniciar_carrera">Start a run</string>
+    <string name="volver_carrera">Back to your run</string>
+    <string name="login_carrera_t">Sign in to run</string>
+    <string name="login_carrera_m">You need an account to save your runs and see your history.</string>
+    <string name="tiempo_t">Time</string>
+    <string name="ritmo_t">Pace</string>
+    <string name="distancia_t">Distance</string>
+    <string name="ritmo_label">Pace (/km)</string>
+    <string name="distancia_label">Distance (km)</string>
+    <string name="ver_datos">Stats</string>
+    <string name="ver_mapa">Map</string>
+    <string name="dlg_finalizar_t">Finish the activity?</string>
+    <string name="dlg_finalizar_m">You can save it to your history or discard it.</string>
+    <string name="guardar">Save</string>
+    <string name="descartar">Discard</string>
+    <string name="seguir">Keep going</string>
+    <string name="no_guardada_invitado">As a guest, the activity isn\'t saved to your history</string>
+    <string name="carrera_sigue">Your activity keeps recording. Get back to it from the notification.</string>
+    <string name="ya_hay_carrera">You already have an activity in progress: finish it to start another</string>
+    <string name="notif_canal">Activity in progress</string>
+    <string name="notif_texto">%1$s km · tap to return</string>
+    <string name="notif_pausa">Paused · %1$s km</string>
+    <string name="resumen_actividad">Activity summary</string>
+    <string name="fondo_transparente">Transparent background (to place over a photo)</string>
+    <string name="compartir">Share</string>
+    <string name="guardar_imagen">Save image</string>
+    <string name="imagen_guardada">Image saved to Pictures/RunGuide</string>
+    <string name="error_imagen">Couldn\'t create the image</string>
+    <string name="km_valor">%1$s km</string>
+    <string name="ritmo_km">%1$s /km</string>
+    <string name="mis_actividades">My activities</string>
+    <string name="sin_actividades">No activities yet. Start a run from the catalog.</string>
+    <string name="actividad_datos">%1$s km · %2$s · %3$s /km</string>
+
     <!-- ========== Settings ========== -->
     <string name="ajustes">Settings</string>
     <string name="ajustes_btn">⚙ Settings</string>

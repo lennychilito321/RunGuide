@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Resumen al terminar una actividad (o al abrirla desde «Mis actividades"):
+     mapa del recorrido y una tarjeta para compartir con el logo de RunGuide. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/transparent">
+
+    <!-- Cabecera -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@drawable/bg_header"
+        android:paddingTop="44dp"
+        android:paddingBottom="16dp"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp">
+
+        <Button
+            android:id="@+id/btnCerrarResumen"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:text="@string/cerrar"
+            android:textSize="12sp"
+            android:backgroundTint="#FFFFFF"
+            android:textColor="@color/verde_primario"
+            android:layout_marginEnd="12dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="@string/resumen_actividad"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvActNombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="19sp"
+                android:textStyle="bold"
+                android:textColor="@color/texto_principal" />
+
+            <TextView
+                android:id="@+id/tvActFecha"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="@color/texto_secundario"
+                android:layout_marginBottom="12dp" />
+
+            <!-- Mapa del recorrido -->
+            <FrameLayout
+                android:id="@+id/contMapaActividad"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@drawable/bg_card"
+                android:padding="1dp"
+                android:layout_marginBottom="16dp">
+
+                <org.osmdroid.views.MapView
+                    android:id="@+id/mapaActividad"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <!-- Tarjeta para compartir (se convierte en imagen) -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_marco_tarjeta"
+                android:padding="16dp">
+
+                <LinearLayout
+                    android:id="@+id/tarjeta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/bg_tarjeta_compartir"
+                    android:paddingTop="32dp"
+                    android:paddingBottom="28dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/distancia_t"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="#E6FFFFFF" />
+
+                    <TextView
+                        android:id="@+id/tvTarjKm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="42sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/ritmo_t"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="#E6FFFFFF" />
+
+                    <TextView
+                        android:id="@+id/tvTarjRitmo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="42sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/tiempo_t"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        android:textColor="#E6FFFFFF" />
+
+                    <TextView
+                        android:id="@+id/tvTarjTiempo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="42sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFFFFF" />
+
+                    <ImageView
+                        android:layout_width="56dp"
+                        android:layout_height="56dp"
+                        android:layout_marginTop="24dp"
+                        android:src="@drawable/logo_app"
+                        android:contentDescription="@string/runguide" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/runguide"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.08"
+                        android:textColor="#FFFFFF" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/swTransparente"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/fondo_transparente"
+                android:textColor="@color/texto_principal" />
+
+            <Button
+                android:id="@+id/btnCompartir"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="12dp"
+                android:text="@string/compartir"
+                android:textStyle="bold"
+                android:backgroundTint="@color/amarillo"
+                android:textColor="@color/negro_carbon" />
+
+            <Button
+                android:id="@+id/btnGuardarImagen"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/guardar_imagen"
+                android:textColor="@color/texto_principal"
+                app:strokeColor="@color/borde"
+                app:cornerRadius="12dp" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

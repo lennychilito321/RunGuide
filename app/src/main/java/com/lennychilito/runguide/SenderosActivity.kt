@@ -58,6 +58,7 @@ class SenderosActivity : AppCompatActivity() {
             binding.btnDashboard.visibility = View.GONE
             binding.btnFavoritos.visibility = View.GONE
             binding.btnLogout.text = getString(R.string.ingresar)
+            binding.btnLogout.setIconResource(R.drawable.ic_ingresar)
         } else {
             binding.btnDashboard.setOnClickListener {
                 startActivity(Intent(this, DashboardActivity::class.java))
@@ -106,6 +107,15 @@ class SenderosActivity : AppCompatActivity() {
             onVerRuta = { abrirDetalle(it) }
         )
         binding.recyclerSenderos.adapter = adapter
+
+        // Al deslizar hacia abajo la cabecera se esconde (lo hace el AppBarLayout) y el botón
+        // flotante se encoge a solo el icono para no tapar los senderos; al subir vuelve.
+        binding.recyclerSenderos.addOnScrollListener(object : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
+            override fun onScrolled(rv: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
+                if (dy > 4) binding.btnIniciarCarrera.shrink()
+                else if (dy < -4) binding.btnIniciarCarrera.extend()
+            }
+        })
 
         configurarFiltros()
 

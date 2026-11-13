@@ -221,6 +221,9 @@
     <string name="sin_app_mapas">Couldn\'t open the map on this device</string>
 
     <!-- ========== Free run and activities ========== -->
+    <string name="opc_favoritos">Favorites</string>
+    <string name="opc_perfil">Profile</string>
+    <string name="opc_predeterminados">Defaults</string>
     <string name="carrera_libre">Free run</string>
     <string name="iniciar_carrera">Start a run</string>
     <string name="volver_carrera">Back to your run</string>

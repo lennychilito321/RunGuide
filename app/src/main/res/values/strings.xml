@@ -221,6 +221,9 @@
     <string name="sin_app_mapas">No se pudo abrir el mapa en este dispositivo</string>
 
     <!-- ========== Carrera libre y actividades ========== -->
+    <string name="opc_favoritos">Favoritos</string>
+    <string name="opc_perfil">Perfil</string>
+    <string name="opc_predeterminados">Predeterminados</string>
     <string name="carrera_libre">Carrera libre</string>
     <string name="iniciar_carrera">Iniciar carrera</string>
     <string name="volver_carrera">Volver a la carrera</string>
